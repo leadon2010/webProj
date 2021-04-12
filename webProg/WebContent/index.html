@@ -4,6 +4,29 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<style>
+		.small {
+			display: none;
+		}
+
+		.large {
+			display: block;
+		}
+
+		@media screen and (max-width: 980px) {
+			* {
+				font-size: 50px;
+			}
+
+			.small {
+				display: block;
+			}
+
+			.large {
+				display: none;
+			}
+		}
+	</style>
 	<script>
 		let today = new Date();
 		today = to_format(today, 'yyyy-mm-dd');
@@ -23,8 +46,19 @@
 </head>
 
 <body>
-	<h1>webProj Project</h1>
-	<a href='index.jsp'>index.jsp</a>
+	<div class="large">
+		<h1>webProj Project</h1>
+		<a href='index.jsp'>index.jsp</a>
+
+	</div>
+	<div class="small">webProj show Content
+		<div id="show"></div>
+	</div>
+	<script>
+		let show = document.getElementById('show');
+		show.innerHTML = screen.availWidth + ' , ' + screen.availHeight;
+		show.innerHTML = window.innerWidth + ' , ' + window.innerHeight;
+	</script>
 </body>
 
 </html>
