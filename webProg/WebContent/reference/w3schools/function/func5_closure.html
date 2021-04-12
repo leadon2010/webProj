@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <h2>JavaScript Closures</h2>
+
+    <p>Counting with a local variable...</p>
+
+    <button type="button" onclick="clickAdd()">Count!</button>
+
+    <p id="demo">0</p>
+
+    <script>
+
+        function myFunction() {
+            var counter = 0;
+            var innerFunc = function () {
+                return ++counter;
+            }
+            return innerFunc;
+        }
+        var ret = myFunction();
+
+        function myFunc() {
+            document.getElementById("demo").innerHTML = ret();
+        }
+
+        var add = (function () {
+            var counter = 0;
+            return function () { ++counter; return counter; }
+        })();
+
+        function clickAdd() {
+            document.getElementById("demo").innerHTML = add();
+        }
+
+    </script>
+</body>
+
+</html>

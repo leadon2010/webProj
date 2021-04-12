@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#subjects option").on("mouseover", function () {
+				$(this).css("backgroundColor", "yellow");
+			})
+			$("#subjects option").on("mouseout", function () {
+				$(this).css("backgroundColor", "");
+			})
+			// $(document).on("mouseover", "option", function () {
+			// 	$(this).css("backgroundColor", "yellow");
+			// })
+			// $(document).on("mouseout", "option", function () {
+			// 	$(this).css("backgroundColor", "");
+			// })
+		});
+		function addOption() {
+			var maxIndex = 0;
+			$.each($("#subjects option"), function (i, o) {
+				maxIndex = i;
+			})
+			var opts = $("<option />").text("element" + (maxIndex + 1));
+			$("#subjects").append(opts);
+		}
+	</script>
+</head>
+
+<body>
+	<h3>라이브 이벤트 처리</h3>
+	<button type="button" id="btn" onclick="addOption()">Click</button>
+	<select name="subjects" id="subjects" size="10">
+		<option>element0</option>
+		<option>element1</option>
+		<option>element2</option>
+	</select>
+</body>
+
+</html>

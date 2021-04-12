@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <h2>The XMLHttpRequest Object</h2>
+
+    <button type="button" onclick="loadDocCallback()">Request data</button>
+    <button type="button" onclick="loadDocFunc('ajax_info.jsp', userFunction1)">Request data Func1</button>
+    <button type="button" onclick="loadDocFunc('ajax_info.jsp', userFunction2)">Request data Func2</button>
+    <button type="button" onclick="loadDocXml()">Request data XML</button>
+
+    <p id="demo"></p>
+
+    <script>
+        // type.1 ==> GET
+        function loadDoc() {
+            console.log("loadDoc")
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.readyState, this.status);
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "ajax_info.jsp?fname=Henry&lname=Ford", true);
+            xhttp.send();
+        }
+
+        // type.2 ==> POST 
+        function loadDocPost() {
+            console.log("loadDocPost")
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                console.log(this.readyState, this.status);
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "ajax_info.jsp", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("fname=Henry&lname=Ford");
+        }
+
+        // type.3 ==> Callback
+        function loadDocCallback() {
+            console.log("callbackFunc")
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                console.log(this.readyState, this.status);
+                if (this.readyState == 4 && this.status == 200) {
+                    callbackFunc(this);
+                }
+            };
+            xhttp.open("POST", "ajax_info.jsp", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("fname=Henry&lname=Ford");
+        }
+        function callbackFunc(arg) {
+            console.log(arg)
+            document.getElementById("demo").innerHTML = arg.responseText;
+        }
+
+        // type.4 ==> function1, function2
+        function loadDocFunc(url, myFunc) {
+            console.log("loadDocFunc")
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                console.log(this.readyState, this.status);
+                if (this.readyState == 4 && this.status == 200) {
+                    myFunc(this);
+                }
+            };
+            xhttp.open("POST", "ajax_info.jsp", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("fname=Henry&lname=Ford");
+        }
+        function userFunction1(arg) {
+            console.log("function1")
+            document.getElementById("demo").innerHTML = "Ajax Function1 called. " + arg.responseText;
+        }
+        function userFunction2(arg) {
+            console.log("function1")
+            document.getElementById("demo").innerHTML = "Ajax Function2 called. " + arg.responseText;
+        }
+
+        // type.5 ==> XML
+        function loadDocXml() {
+            console.log("loadXML")
+            var xhttp, xmlDoc, txt, x, i;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    xmlDoc = this.responseXML;
+                    txt = "";
+                    x = xmlDoc.getElementsByTagName("CD");
+                    for (i = 0; i < x.length; i++) {
+                        txt += "<li>" + x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue + ", " + x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue + "</li>";
+                    }
+                    document.getElementById("demo").innerHTML = txt;
+                }
+            };
+            xhttp.open("GET", "cd_catalog.xml", true);
+            xhttp.send();
+        }
+
+
+    </script>
+</body>
+
+</html>

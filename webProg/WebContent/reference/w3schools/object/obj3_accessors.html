@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 30,
+            language: "english",
+            set setage(args) {
+                this.age = args;
+            },
+            get getage() {
+                return this.age;
+            },
+            myage: function () {
+                return this.age;
+            },
+            set lang(args) {
+                this.language = args;
+            },
+            get lang() {
+                return this.language.toUpperCase();
+            }
+        };
+
+        console.log(person.age);
+        person.setage = 40;
+        console.log(person.getage);
+        console.log(person.myage());
+
+        var obj = {
+            counter: 0,
+            get reset() {
+                this.counter = 0;
+            },
+            get increment() {
+                this.counter++;
+            },
+            get decrement() {
+                this.counter--;
+            },
+            set add(args) {
+                this.counter += args;
+            },
+            set subtract(args) {
+                this.counter -= args;
+            }
+        };
+        obj.reset;
+        console.log(obj.counter);
+        obj.add = 5;
+        console.log(obj.counter);
+        obj.subtract = 1;
+        console.log(obj.counter);
+        obj.increment;
+        console.log(obj.counter);
+        obj.decrement;
+        console.log(obj.counter);
+
+        var vehicle = {
+            name: "BMW",
+            color: "black",
+            model: "520",
+            price: 1000,
+            speed: 10,
+        };
+        console.log(vehicle.speed);
+        Object.defineProperty(vehicle, "reset", { get: function () { this.speed = 0; } });
+        Object.defineProperty(vehicle, "increment", { get: function () { this.speed += 10; } });
+        Object.defineProperty(vehicle, "decrement", { get: function () { this.speed -= 10; } });
+
+        vehicle.reset;
+        console.log(vehicle.speed);
+        vehicle.increment;
+        vehicle.increment;
+        console.log(vehicle.speed);
+        vehicle.decrement;
+        console.log(vehicle.speed);
+
+
+    </script>
+</body>
+
+</html>

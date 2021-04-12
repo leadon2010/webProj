@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<script>
+		function outerFunc(arg1, arg2) {
+			var local = 8;
+			function innerFunc(innerArg) {
+				console.log((arg1 + arg2) / (innerArg + local));
+			}
+			return innerFunc;
+		}
+		var exam1 = outerFunc(2, 4);
+		console.log(exam1);
+		exam1(2);
+
+		////////////////////////////////
+
+		var say = 'Hello';
+
+		function print() {
+			console.log(say);
+			var say = ' World';
+			console.log(say);
+
+			function inner_print() {
+				console.log(say);
+				var say = 'Good';
+				console.log(say);
+				say = ' Bye';
+				console.log(say);
+			}
+
+			inner_print();
+		}
+
+		print();
+	</script>
+</body>
+
+</html>

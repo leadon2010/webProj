@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#p1").mousedown(function () {
+                $("#show").html("Mouse down over p1!").css("backgroundColor", "red");
+            });
+            $("#p1").mouseup(function () {
+                $("#show").html("Mouse up over p1!").css("backgroundColor", "yellow");
+            });
+            $("#p1").mouseenter(function () {
+                $("#show").html("Mouse enter over p1!").css("backgroundColor", "green");
+            });
+            $("#p1").mouseleave(function () {
+                $("#show").html("Mouse leave over p1!").css("backgroundColor", "purple");
+            });
+            $("#p1").hover(function () {
+                console.log("You entered p1!");
+            }, function () {
+                console.log("Bye! You now leave p1!");
+            });
+
+            $("input").focus(function () {
+                $(this).css("background-color", "yellow");
+            });
+            $("input").blur(function () {
+                $(this).css("background-color", "green");
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <p id="p1">This is a paragraph.</p><br><br>
+
+    <div id="show"></div>
+
+    <br><br>
+    Name: <input type="text" name="fullname"><br>
+    Email: <input type="text" name="email">
+
+</body>
+
+</html>

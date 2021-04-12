@@ -1,0 +1,144 @@
+<script type="text/javascript" src="allCheck.js"></script>
+<style>
+    input {
+        height: 19px;
+        border: 1px #c0c0c0 solid
+    }
+
+    .LV_valid {
+        color: #00CC00;
+    }
+
+    .LV_invalid {
+        color: #CC0000;
+    }
+
+    .LV_validation_message {
+        font-weight: bold;
+        margin: 0 0 0 5px;
+    }
+
+    .LV_valid_field,
+    input.LV_valid_field:hover,
+    input.LV_valid_field:active,
+    textarea.LV_valid_field:hover,
+    textarea.LV_valid_field:active,
+    .fieldWithErrors input.LV_valid_field,
+    .fieldWithErrors textarea.LV_valid_field {
+        border: 1px solid #00CC00;
+    }
+
+    .LV_invalid_field,
+    input.LV_invalid_field:hover,
+    input.LV_invalid_field:active,
+    textarea.LV_invalid_field:hover,
+    textarea.LV_invalid_field:active,
+    .fieldWithErrors input.LV_invalid_field,
+    .fieldWithErrors textarea.LV_invalid_field {
+        border: 1px solid #CC0000;
+    }
+</style>
+<strong>특정단어만 입력가능 :</strong>
+<br> 블루비 라고 입력해보세요..
+<input type="text" id="typeBlueb" />
+<script type="text/javascript">
+    var typeBlueb = new LiveValidation('typeBlueb', { validMessage: '감사합니다..블루비 잘하셨어요', wait: 500 });
+    typeBlueb.add(Validate.Presence, { failureMessage: "단어를 입력해주세요." });
+    typeBlueb.add(Validate.Format, { pattern: /^블루비$/i, failureMessage: "블루비 라고 입력해보시라고요" });
+</script>
+<br />
+<br />
+<strong>입력폼에 값이 어떤 값이라도 입력되는지 체크 :</strong>
+<br>
+<input type="text" id="f1" />
+<script type="text/javascript">
+    var f1 = new LiveValidation('f1', { validMessage: '통과' });
+    f1.add(Validate.Presence, { failureMessage: "필드에 값이 비어 있으면 집에 못갑니다." });
+</script>
+<br />
+<br />
+<strong>입력값 내용중 특정단어만 들어 있으면 통과(현재설정은 love라는 단어가 있으면 통과) :</strong>
+<br> i love you는 통과, i lov you는 집에 못가요.
+<br /> 에러 메세지를 설정하지 않으면 아래처럼 디폴트 값이 나옵니다.
+<br />
+<input type="text" id="f2" />
+<script type="text/javascript">
+    var f2 = new LiveValidation('f2');
+    f2.add(Validate.Format, { pattern: /love/i });
+</script>
+<br />
+<br />
+<strong>숫자만 입력가능 :</strong>
+<br>
+<input type="text" id="f3" />
+<script type="text/javascript">
+    var f3 = new LiveValidation('f3', { validMessage: '통과' });
+    f3.add(Validate.Numericality);
+</script>
+<br />
+<br />
+<strong>정수만 입력가능 :</strong>
+<br>
+<input type="text" id="f4" />
+<script type="text/javascript">
+    var f4 = new LiveValidation('f4');
+    f4.add(Validate.Numericality, { onlyInteger: true });
+</script>
+<br />
+<br />
+<strong>특정숫자값만 입력가능(현재 2000) :</strong>
+<br>
+<input type="text" id="f5" />
+<script type="text/javascript">
+    var f5 = new LiveValidation('f5', { validMessage: '통과' });
+    f5.add(Validate.Numericality, { is: 2000 });
+</script>
+<br />
+<br />
+<strong>2000이상 값만 입력가능 :</strong>
+<br>
+<input type="text" id="f6" />
+<script type="text/javascript">
+    var f6 = new LiveValidation('f6');
+    f6.add(Validate.Numericality, { minimum: 2000 });
+</script>
+<br />
+<br />
+<strong>2000이하 값만 입력가능 :</strong>
+<br>
+<input type="text" id="f7" />
+<script type="text/javascript">
+    var f7 = new LiveValidation('f7');
+    f7.add(Validate.Numericality, { maximum: 2000 });
+</script>
+<br />
+<br />
+<strong>10~20사이 값만 입력 가능 :</strong>
+<br>
+<input type="text" id="f8" />
+<script type="text/javascript">
+    var f8 = new LiveValidation('f8');
+    f8.add(Validate.Numericality, { minimum: 10, maximum: 20 });
+</script>
+<br />
+<br />
+<strong>패스워드 컨폼 :</strong>
+<br> Enter a password:
+<input type="password" id="myPasswordField" />
+<br /> Confirm password:
+<input type="password" id="f19" />
+<script type="text/javascript">
+    var f19 = new LiveValidation('f19');
+    f19.add(Validate.Confirmation, { match: 'myPasswordField' });
+</script>
+<br />
+<br />
+<strong>이메일 유효성 체크 :</strong>
+<br>
+<input type="text" id="f20" />
+<script type="text/javascript">
+    var f20 = new LiveValidation('f20');
+    f20.add(Validate.Email);
+</script>
+<br />
+<br />

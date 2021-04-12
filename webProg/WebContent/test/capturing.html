@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<div class="one">one
+		<div class="two">two
+			<div class="three">three</div>
+		</div>
+	</div>
+	<script>
+		var divs = document.querySelectorAll("div");
+		divs.forEach(function (o) {
+			o.addEventListener("click", function (event) {
+				//if (event.currentTarget.textNode == "one")
+				//console.log(event.currentTarget.className);
+				console.log(event.currentTarget.innerText)
+			}, {
+				capture: false
+			});
+		})
+	</script>
+</body>
+
+</html>

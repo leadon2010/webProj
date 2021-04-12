@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <a href="insertEmployee.html">입력화면</a>
+    <p id="show"></p>
+
+    <script>
+        $.ajax({
+            url: "../../EmpServlet",
+            data: "action=list",
+            dataType: "json",
+            success: function (result) {
+                // console.log(result.datas);
+                var datas = result.datas;
+                var table, tr, th, td;
+                table = $("<table>");
+                tr = $("<tr>");
+                for (title in datas[0]) {
+                    th = $("<th>").text(title);
+                    tr.append(th);
+                }
+                tr.append($("<th>").text("Del"));
+                table.append(tr);
+                $.each(datas, function (i, o) {
+                    tr = $("<tr>").attr("id", o.employeeId).click(changeFunc);
+                    console.log(o);
+                    for (field in o) {
+                        td = $("<td>").text(o[field]);
+                        tr.append(td);
+                    }
+                    tr.append($("<td>").html($("<button>").text("del").click(delFunc)))
+                    table.append(tr);
+                })
+                $("#show").html(table);
+            }
+        });
+
+        function delFunc() {
+            var trId = $(this).parent().parent().attr("id");
+            $.ajax({
+                url: "../../EmpServlet",
+                data: "action=del&empId=" + trId,
+                success: function (result) {
+                    console.log(result);
+                    if (result) {
+                        console.log("del success");
+                        $("#" + trId).remove();
+                    } else {
+                        console.log("error");
+                    }
+                }
+            });
+        }
+
+        function changeFunc() {
+            console.log(this);
+            var lastName = $(this).children().eq(0).text();
+            var firstName = $(this).children().eq(1).text();
+            var hireDate = $(this).children().eq(2).text();
+            var empId = $(this).children().eq(3).text();
+            var salary = $(this).children().eq(4).text();
+            var tr = $("<tr>");
+            tr.append($("<td>").text(lastName), $("<td>").text(firstName), $("<td>").text(hireDate));
+            tr.append($("<td>").text(empId), $("<td>").html($("<input>").val(salary)));
+            tr.append($("<td>").html($("<button>").text("change").click(updateFunc)));
+            $(this).after(tr);
+        }
+
+        function updateFunc() {
+            var empId = $(this).parent().prev().prev().text();
+            var salary = $(this).parent().prev().children().eq(0).val();
+            var elem = $(this).parent().parent();
+            console.log(empId, salary);
+            $.ajax({
+                url: "../../EmpServlet",
+                data: { "action": "update", "empId": empId, "salary": salary },
+                success: function () {
+                    console.log("updated.")
+                    $("#" + empId).children().eq(4).text(salary);
+                    elem.remove();
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>

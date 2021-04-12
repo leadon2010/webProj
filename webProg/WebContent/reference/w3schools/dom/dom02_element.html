@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+	<p id="intro">Hello World!</p>
+
+	<div id="main">
+		<p class="intro">The DOM is very useful.</p>
+		<p class="intro">
+			This example demonstrates the <b>getElementsByTagName</b> method
+		</p>
+		<div class="intro">different class intro</div>
+	</div>
+
+	<p id="demo"></p>
+	<p id="demo1"></p>
+	<p id="demo2"></p>
+	<p id="demo3"></p>
+	<p id="demo4"></p>
+
+	<form id="frm1" action="action.jsp">
+		First name: <input type="text" name="fname" value="Donald"><br>
+		Last name: <input type="text" name="lname" value="Duck"><br>
+		<input type="submit" value="Submit">
+	</form>
+	<button onclick="myFunc()">Click</button>
+
+	<script>
+		// Finding HTML elements by id
+		var myElement = document.getElementById("intro");
+		document.getElementById("demo").innerHTML = "getElementById ====> "
+			+ myElement.innerHTML;
+
+		// Finding HTML elements by tag name
+		var x = document.getElementById("main");
+		var y = x.getElementsByTagName("p");
+		document.getElementById("demo1").innerHTML = 'getElementsByTagName ====> '
+			+ y[0].innerHTML;
+
+		// Finding HTML elements by class name
+		var x = document.getElementsByClassName("intro");
+		document.getElementById("demo2").innerHTML = 'getElementsByClassName ====> '
+			+ x[1].innerHTML;
+
+		// Finding HTML elements by CSS selectors
+		var x = document.querySelectorAll("p.intro");
+		document.getElementById("demo3").innerHTML = 'querySelectorAll ====> '
+			+ x[1].innerHTML;
+
+		// Finding HTML elements by HTML object collections
+		function myFunc() {
+			var x = document.forms["frm1"];
+			console.log(x);
+			var text = "";
+			for (var i = 0; i < x.length; i++) {
+				text += x.elements[i].value + "<br>";
+			}
+			document.getElementById("demo4").innerHTML = text;
+		}
+	</script>
+</body>
+
+</html>

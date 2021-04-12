@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(first, last, age) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+        }
+        var myFriend = new Person("Scott", "Tiger", 30);
+        for (field in myFriend) {
+            console.log(field + ", " + myFriend[field]);
+        }
+        console.log("=================================")
+        Person.prototype.phone = "121212";
+        for (field in myFriend) {
+            console.log(field + ", " + myFriend[field]);
+        }
+        console.log("=================================")
+        var girlFriend = new Person("Jane", "Xabi", 25);
+        girlFriend.phone = "111111";
+        for (field in girlFriend) {
+            console.log(field + ", " + girlFriend[field]);
+        }
+    </script>
+</body>
+
+</html>

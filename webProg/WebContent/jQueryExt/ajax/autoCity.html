@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script>
+	$(function() {
+		var languages = [ "ActionScript", "AppleScript", "Asp", "BASIC", "C",
+				"C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran",
+				"Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl",
+				"PHP", "Python", "Ruby", "Scala", "Scheme" ];
+
+		$("#my-language").autocomplete({
+			source : languages
+		});
+	});
+</script>
+</head>
+<body>
+	프로그래밍 언어:
+	<input id='my-language' type='text'>
+</body>
+</html>

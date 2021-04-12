@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="a">
+		<div class="b">
+			<div class="c">bubbling</div>
+		</div>
+	</div>
+	<script>
+		document.querySelector('.a').addEventListener('click', function() {
+			console.log('aaa');
+		}, false);
+		document.querySelector('.b').addEventListener('click', function(evt) {
+			evt.stopPropagation();//event전파를 차단함.
+			console.log('bbb');
+		}, false);
+		document.querySelector('.c').addEventListener('click', function() {
+			console.log('ccc');
+		}, false);
+	</script>
+	<br>
+	<div class="d">
+		<div class="e">
+			<div class="f">capturing</div>
+		</div>
+	</div>
+	<script>
+		document.querySelector('.d').addEventListener('click', function() {
+			console.log('d');
+		}, true);
+		document.querySelector('.e').addEventListener('click', function() {
+			console.log('e');
+		}, true);
+		document.querySelector('.f').addEventListener('click', function() {
+			console.log('f');
+		}, true);
+	</script>
+
+</body>
+</html>

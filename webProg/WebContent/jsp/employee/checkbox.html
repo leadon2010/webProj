@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            url: "../GetJobServlet",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                showJobList(result);
+            }
+        });
+
+        function showJobList(datas) {
+            var $table = $('<table />').attr('border', '1');
+
+            var $tr = $('<tr />');
+            var $chk = $('<input />').attr('type', 'checkbox').attr('id', 'allcheck');
+            $chk.on('click', allCheckFunc);
+            var $td1 = $('<th />').append($chk);
+            var $td2 = $('<th />').text('JobId');
+            var $td3 = $('<th />').text('JobTitle');
+            $tr.append($td1, $td2, $td3);
+            $table.append($tr);
+
+            datas.forEach(function (obj, idx) {
+                $tr = $('<tr />');
+                $chk = $('<input />').attr('type', 'checkbox');
+                $chk.on('click', clickFunc);
+                $td1 = $('<td />').append($chk);
+                $td2 = $('<td />').text(obj.job_id);
+                $td3 = $('<td />').text(obj.job_title);
+                $tr.append($td1, $td2, $td3);
+                $table.append($tr);
+            });
+            $('#show').append($table);
+        }
+
+        function clickFunc() {
+            console.log($(this).parent().next().html())
+        }
+
+        function allCheckFunc() {
+            var val = $(this).is(":checked");
+            console.log(val)
+            $('td [type=checkbox]').each(function (a, b, c) {
+                $(b).prop('checked', val);
+                // if ($(this).is(":checked"))
+                //     $(b).prop('checked', false);
+                // else
+                //     $(b).prop('checked', true);
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <p id="show"></p>
+</body>
+
+</html>

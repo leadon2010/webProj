@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        let result;
+        let resultAry = [
+            ["Dept", "Members"]
+        ];
+        let xhtp = new XMLHttpRequest();
+        xhtp.onreadystatechange = function () {
+            if (xhtp.readyState == 4 && xhtp.status == 200) {
+                console.log(xhtp.responseText);
+                result = JSON.parse(xhtp.responseText);
+                for (data of result) {
+                    let iAry = [];
+                    for (field in data) {
+                        iAry.push(field);
+                        iAry.push(parseInt(data[field]));
+                    }
+                    resultAry.push(iAry);
+                }
+                console.log(resultAry);
+            }
+        }
+        xhtp.open('get', '../GetEmployeePerDeptServ');
+        xhtp.send();
+
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(resultAry);
+
+            var options = {
+                title: 'Company Dept Member Info'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+</body>
+
+</html>

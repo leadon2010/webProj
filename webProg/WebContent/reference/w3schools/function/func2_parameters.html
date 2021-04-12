@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Function parameters</title>
+</head>
+
+<body>
+    <div id="show1"></div>
+    <div id="show2"></div>
+    <div id="show3"></div>
+    <div id="show4"></div>
+    <div id="show5"></div>
+
+    <script>
+
+        // parameters missing.
+        function myFunction1(x, y) {
+            if (y === undefined)
+                y = 0;
+            return x * y;
+        }
+        var result1 = myFunction1(4);
+        document.getElementById("show1").innerHTML = result1;
+
+        //default parameters setting.
+        function myFunction2(x = 1, y = 1) {
+            return x * y;
+        }
+        document.getElementById("show2").innerHTML = myFunction2(3);
+
+        // the Arguments Object.
+        var result2 = findMax(1, 34, 67, 2, 234, 87);
+        function findMax() {
+            var max = -Infinity;
+            for (var i = 0; i < arguments.length; i++) {
+                max = arguments[i] > max ? arguments[i] : max;
+            }
+            return max;
+        }
+        document.getElementById("show3").innerHTML = result2;
+
+        // work => calculate arguments sum...???
+        var totalSum = calSum(1, 4, 2, 43, 23, 92);
+        function calSum() {
+            var tot = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                tot += arguments[i];
+            }
+            return tot;
+        }
+        document.getElementById("show4").innerHTML = totalSum;
+
+    </script>
+</body>
+
+</html>

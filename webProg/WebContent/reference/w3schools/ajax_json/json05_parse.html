@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <h2>Use the XMLHttpRequest to get the content of a file.</h2>
+    <p>The content is written in JSON format, and can easily be converted into a JavaScript object.</p>
+
+    <p id="demo"></p>
+
+    <button onclick="jsonFunction()">Click</button>
+
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //var myObj = JSON.parse(this.responseText);
+                //document.getElementById("demo").innerHTML = myObj.name;
+                var myArr = JSON.parse(this.responseText);
+                document.getElementById("demo").innerHTML = myArr[0];
+            }
+        };
+        //xmlhttp.open("GET", "json_demo.txt", true);
+        xmlhttp.open("GET", "json_demo_array.txt", true);
+        xmlhttp.send();
+
+        function jsonFunction() {
+            var text = '{"name":"John", "birth":"1986-12-14", "city":"New York"}';
+            var obj = JSON.parse(text, function (key, value) {
+                if (key == "birth") {
+                    return new Date(value);
+                } else {
+                    return value;
+                }
+            });
+            document.getElementById("demo").innerHTML = obj.name + ", " + obj.birth;
+        }
+    </script>
+</body>
+
+</html>

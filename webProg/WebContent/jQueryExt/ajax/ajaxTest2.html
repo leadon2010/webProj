@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			url : "deptControl.jsp?action=listjson",
+			success : function(result) {
+				var datas = JSON.parse(result);
+				var datajson = JSON.stringify(datas);
+				//console.log(datajson);
+				var resulttag;
+				//console.log(datas);
+				resulttag += "<table border='1'>";
+				for(i=0;i<datas.length;i++){
+					resulttag += "<tr><td>"+datas[i].departmentName+"</td><td>"+datas[i].departmentId+"</td><td>"+datas[i].locationId+"</td></tr>";
+				}
+				resulttag += "</table>";
+				$('div').html(resulttag);
+			}
+		});
+		var colors = ["","red","blue","yellow","green"];
+		var j = 0;
+		$("#myInput").on("keyup", function(i, o){
+			//console.log("event", colors[++j]);
+			var value = $(this).val().toLowerCase();
+			$("table tr").filter(function(i,o){
+                //$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                // return ($(o).text().toLowerCase().indexOf(value) < -1);
+                return ($(this).text().toLowerCase().indexOf(value) > -1);
+            }).css("background-color", colors[++j]);
+			//}).css("display", "none");
+		});
+	});
+</script>
+</head>
+<body>
+	<input id="myInput" type="text" placeholder="Search..">
+    <br>
+	<div id="demo">
+	</div>
+</body>
+</html>

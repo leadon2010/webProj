@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <script>
+        let promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('successful!!');
+            }, 2000);
+        });
+
+        promise.then((message) => {
+            console.log(message);
+        }).catch((error) => {
+            console.log(new Error(error));
+        })
+    </script>
+    <div id="show"></div>
+</body>
+
+</html>

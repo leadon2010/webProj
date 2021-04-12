@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("button").click(function () {
+        $.get("demo_test1.jsp", function (data, status) {
+          console.log(data);
+          var result = JSON.parse(data);
+          console.log(result);
+          var jsonData = JSON.stringify(result);
+          console.log(jsonData);
+
+          var $tag = "<ul>";
+          for (var i = 0; i < result.datas.length; i++) {
+            //console.log(result.datas[i].firstName);
+            $tag += "<li>" + result.datas[i].firstName + "-" + result.datas[i].lastName + "</li>";
+          }
+          $tag += "</ul>";
+          $("#result").append($tag);
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <button>Send an HTTP GET request to a page and get the result back</button>
+  <div id="result"></div>
+</body>
+
+</html>

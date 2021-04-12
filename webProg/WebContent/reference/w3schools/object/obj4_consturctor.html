@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script>
+        // object constructor function.
+        function Person(first, last, age, eye) {
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyeColor = eye;
+        }
+        var myFather = new Person("John", "Doe", 50, "blue");
+        var myMother = new Person("Sally", "Rally", 48, "green");
+        document.getElementById("demo").innerHTML = "My Father is " + myFather.age + " old.";
+
+        // adding a property to an object.
+        myFather.nationality = "English";
+        document.getElementById("demo").innerHTML = "My Father nation is " + myFather.nationality;
+
+        // adding a method to an object
+        myFather.fullName = function () {
+            return this.firstName + " " + this.lastName;
+        }
+        document.getElementById("demo").innerHTML = "My Father name is " + myFather.fullName();
+    </script>
+</body>
+
+</html>

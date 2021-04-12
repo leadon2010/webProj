@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- JavaScript -->
+    <script src="${pageContext.request.contextPath}/resources/js/index/jquery-1.11.1.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <!-- style -->
+    <style>
+        #lightbox {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 400px;
+            height: 200px;
+            margin-left: -200px;
+            background: #fff;
+            z-index: 1001;
+            display: none;
+        }
+
+        #lightbox-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            filter: alpha(opacity=75);
+            -moz-opacity: 0.75;
+            -khtml-opacity: 0.75;
+            opacity: 0.75;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Easy LightBox Example</p>
+    <p>
+        1. <a href="javascript:lightbox('hello')">Only Text</a>
+    </p>
+    <p>
+        2. <a href="javascript:lightbox('<p><strong>Rich</strong> content works too!</p>');">HTML Tag</a>
+    </p>
+    <p>
+        3. <a href="javascript:lightbox(null, 'http://foo.com/readme.txt');">Ajax</a>
+    </p>
+    <div id="lightbox">
+    </div>
+    <div id="lightbox-shadow">
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            closeLightbox();
+            $('#lightbox-shadow').click(function (e) {
+                closeLightbox();
+            });
+        });
+
+        function lightbox(insertContent, ajaxContentUrl) {
+            // remove any previously added content
+            $('#lightbox').empty();
+            // insert HTML content
+            if (insertContent != null) {
+                $('#lightbox').append(insertContent);
+            }
+            // insert AJAX content
+            if (ajaxContentUrl != null) {
+                // temporarily add a "Loading..." message in the lightbox
+                $('#lightbox').append('<p class="loading">Loading...</p>');
+                // request AJAX content
+                $.ajax({
+                    type: 'GET',
+                    url: ajaxContentUrl,
+                    success: function (data) {
+                        // remove "Loading..." message and append AJAX content
+                        $('#lightbox').empty();
+                        $('#lightbox').append(data);
+                    },
+                    error: function () {
+                        alert('AJAX Failure!');
+                    }
+                });
+            }
+            // move the lightbox to the current window top + 100px
+            $('#lightbox').css('top', $(window).scrollTop() + 100 + 'px');
+            // display the lightbox
+            $('#lightbox').show();
+            $('#lightbox-shadow').show();
+        }
+        // close the lightbox
+        function closeLightbox() {
+            // hide lightbox and shadow <div/>'s
+            $('#lightbox').hide();
+            $('#lightbox-shadow').hide();
+            // remove contents of lightbox in case a video or other content is actively playing
+            $('#lightbox').empty();
+        }
+    </script>
+</body>
+
+</html>

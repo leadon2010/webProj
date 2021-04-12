@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<button id="myBtn">Try it</button>
+	<p id="demo"></p>
+	<p id="demo1"></p>
+	<script>
+		document.getElementById("myBtn").addEventListener("click", displayDate);
+		document.getElementById("myBtn").addEventListener("click", addDate);
+		var nDate = new Date();
+		var sDate = nDate.getDate();
+
+		function displayDate() {
+			var tday = new Date();
+			var year = tday.getFullYear();
+			var month = tday.getMonth() + 1;
+			var day = tday.getDate();
+			var now = year + "년" + month + "월" + day + "일";
+
+			document.getElementById('demo').innerHTML = tday;
+		}
+
+		function addDate() {
+			var aaa = document.getElementById('demo').innerHTML;
+			document.getElementById('demo1').innerHTML = aaa;
+		}
+	</script>
+</body>
+</html>

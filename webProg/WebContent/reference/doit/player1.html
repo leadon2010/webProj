@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "playerList.jsp",
+                type: "post",
+                success: function (names) {
+                    var datas = JSON.parse(names);
+                    var $ul = $("<ul />")
+                    $.each(datas, function (i, o) {
+                        console.log(o)
+                        $ul.append($("<li />").text(o));
+                    })
+                    $("#list").append($ul);
+                }
+            })
+        });
+    </script>
+</head>
+
+<body>
+
+    <input type="text" id="input" />
+
+    <h1>ListS</h1>
+    <ul style="display:none">
+        <li>test</li>
+        <li>love</li>
+        <li>live</li>
+        <li>nice</li>
+        <li>good</li>
+    </ul>
+
+    <div id="list"></div>
+
+    <script>
+        var $input = $("#input");
+        $input.on("keydown", function (event) {
+            //console.log(event.which);
+            if (event.which == 13) {
+                //console.log($input.val());
+                var answer = $input.val();
+                $.each($("li"), function (i, o) {
+                    //console.log($(o).text());
+                    if ($(o).text() == answer) {
+                        $(o).css("display", "none");
+                    }
+                })
+                $input.val("").focus();
+            }
+        })
+    </script>
+</body>
+
+</html>

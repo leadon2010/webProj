@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        // $(function () {
+        // 	$("#plus").on("click", function (e) {
+        // 		$("#rejects").append($("#subjects :selected"));
+        // 		$("#rejects").children().each(function () {
+        // 			$(this).attr("class", "rjt");
+        // 		})
+        // 	});
+
+        // 	$("#minus").on("click", function () {
+        // 		$("#subjects").append($("#rejects :selected"));
+        // 		$("#subjects").children().each(function () {
+        // 			$(this).attr("class", "opt");
+        // 		})
+        // 	})
+        // })
+    </script>
+</head>
+
+<body>
+    <h3>선택한 option을 상대편으로 옮기기</h3>
+    <form>
+        <select name="subjects" id="subjects" size="10">
+            <option>취미1-1</option>
+            <option>취미1-2</option>
+            <option>취미1-3</option>
+            <option>취미1-4</option>
+            <option>취미1-5</option>
+        </select>
+        <button type="button" id="plus">+</button>
+        <button type="button" id="minus">-</button>
+        <select name="rejects" id="rejects" size="10">
+            <option>취미2-1</option>
+            <option>취미2-2</option>
+            <option>취미2-3</option>
+            <option>취미2-4</option>
+            <option>취미2-5</option>
+        </select>
+    </form>
+
+    <script>
+        let plus = document.getElementById('plus');
+        plus.onclick = function () {
+            let selIndex = document.getElementById('subjects').selectedIndex;
+            let subs = document.querySelectorAll('#subjects>option');
+            let selected = subs[selIndex];
+
+            document.getElementById('rejects').append(selected);
+        }
+
+        let minus = document.getElementById('minus');
+        minus.onclick = function () {
+            let selIndex = document.getElementById('rejects').selectedIndex;
+            let rejs = document.querySelectorAll('#rejects>option');
+            let selected = rejs[selIndex];
+
+            document.getElementById('subjects').append(selected);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar v1.0</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            createCal();
+        });
+
+        function prev() {
+            var currentDate = sessionStorage.getItem("currentDate");
+            var today = new Date(currentDate);
+            console.log(today);
+            sessionStorage.setItem("currentDate", today.getFullYear() + "," + (today.getMonth() - 1) + "," + today.getDate());
+            createCal();
+        }
+
+        function next() {
+            var currentDate = sessionStorage.getItem("currentDate");
+            var today = new Date(currentDate);
+            console.log(today);
+            sessionStorage.setItem("currentDate", today.getFullYear() + "," + (today.getMonth() + 1) + "," + today.getDate());
+            createCal();
+        }
+
+        function createCal() {
+            var today;
+            if (sessionStorage.getItem("currentDate") == null) {
+                today = new Date();
+                console.log("null")
+            } else {
+                var currentDate = sessionStorage.getItem("currentDate");
+                today = new Date(currentDate);
+                console.log("not null", sessionStorage.getItem("currentDate"))
+            }
+            // sessionStorage.setItem("currentDate", today.getFullYear() + "," + today.getMonth() + "," + today.getDate());
+            // console.log("today is " + sessionStorage.getItem("currentDate"));
+
+            var thisYear = today.getFullYear();
+            var thisMonth = today.getMonth();
+            var lastDate = new Date(thisYear, thisMonth + 1, 0);
+            var startDay = new Date(thisYear, thisMonth, 1).getDay();
+            var thisDate = today.getDate();
+            lastDate = lastDate.getDate();
+            console.log("thisYear: " + thisYear + " thisMonth: " + thisMonth + " lastDate: " + lastDate + " startDay: " + startDay + " thisDate: " + thisDate);
+
+            var dayAry = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+            var $table = $("<table border=1 />");
+            var $tr = $("<tr />");
+            for (var i = 0; i < dayAry.length; i++) {
+                $tr.append($("<th />").text(dayAry[i]));
+            }
+            $table.append($tr);
+
+            var $tr = $("<tr />");
+            var s = 0;
+            for (s = 0; s < startDay; s++) {
+                console.log(thisDate);
+                $tr.append($("<td />").text(" "));
+            }
+            for (var i = 1; i <= lastDate; i++) {
+                if ((i + s) % 7 == 1)
+                    $tr.append($("<td />").text(i).css("background", "red"));
+                else if ((i + s) % 7 == 0)
+                    $tr.append($("<td />").text(i).css("background", "cyan"));
+                else if (i == thisDate)
+                    $tr.append($("<td />").text(i).css("background", "yellow"));
+                else
+                    $tr.append($("<td />").text(i).css("background", "white"));
+                $table.append($tr);
+
+                if ((i + s) % 7 == 0) {
+                    var $tr = $("<tr />");
+                }
+            }
+            $("#cal").append($table);
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="prev()"><</button>
+    <button onclick="createCal()">Create Calendar</button>
+    <button onclick="prev()">></button>
+    <div id="cal"></div>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="show1"></div>
+    <div id="show2"></div>
+    <div id="show3"></div>
+    <script>
+        var person = { firstName: "John", lastName: "Doh", age: 30, eyeColor: "blue" };
+        document.getElementById("show1").innerText = person["firstName"];
+
+        var person1 = new Object();
+        person1.firstName = "John";
+        person1.lastName = "Doh";
+        person1.age = 34;
+        person1.eyeColor = "red";
+        person1.fullName = function() {
+        	return this.firstName + ", " + this.lastName;
+        }
+
+        document.getElementById("show2").innerText = person1.firstName + ", " + person1.lastName;
+        
+        var x = person1;
+        x.firstName = "Jane";
+        x.lastName = "Doe";
+        document.getElementById("show3").innerText = x.fullName();
+    </script>
+</body>
+
+</html>

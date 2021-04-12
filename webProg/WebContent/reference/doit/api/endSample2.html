@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>end demo</title>
+  <style>
+    p,
+    div {
+      margin: 1px;
+      padding: 1px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    div {
+      color: blue;
+    }
+
+    b {
+      color: red;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+
+  <p>
+    Hi there <span>how</span> are you <span>doing</span>?
+  </p>
+
+  <p>
+    This <span>span</span> is one of
+    several <span>spans</span> in this
+    <span>sent<div>div</div>ence</span>.
+  </p>
+
+  <div>
+    Tags in jQuery object initially: <b></b>
+  </div>
+
+  <div>
+    Tags in jQuery object after find: <b></b>
+  </div>
+
+  <div>
+    Tags in jQuery object after end: <b></b>
+  </div>
+  
+  <script>
+  console.log("start")
+    jQuery.fn.showTag = function (n) {
+	  console.log("what is n: ", n);
+      var tags = this.map(function (i,o) {
+    	  console.log(this, this.tagName)
+        return this.tagName;
+      })
+        .get()
+        .join(", ");
+      $("b:eq( " + n + " )").text(tags);
+      return this;
+    };
+    //console.log(jQuery.fn.showTags);
+    console.log("end")
+//console.log($("p").showTags(0).find("span"))
+    $("p")
+      .showTag(0)
+      .find("span")
+      .showTag(1)
+      .css("background", "yellow")
+      .end()
+      .showTag(2)
+      .css("font-style", "italic")
+      .end()
+      .showTag(3);
+  </script>
+
+</body>
+
+</html>

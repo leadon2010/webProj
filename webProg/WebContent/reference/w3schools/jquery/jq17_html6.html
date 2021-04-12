@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <button>CreateTAble</button>
+    <script>
+        $("button").on("click", function () {
+            var table = $("<table>");
+            table.attr({ "id": "tbl", "border": "1", "caption": "<주소록>" });
+            var th1 = $("<th>").text("이름");
+            var th2 = $("<th>").text("나이");
+            var th3 = $("<th>").text("전화번호");
+            var tr1 = $("<tr>");
+            tr1.append(th1, th2, th3);
+            table.append(tr1);
+
+            var td1 = $("<td>").text("홍길동");
+            var td2 = $("<td>").text("35");
+            var td3 = $("<td>").text("010-1111-1111");
+            var td4 = $("<button>").text("del").click(delFunc);
+            var tr2 = $("<tr>");
+            tr2.append(td1, td2, td3, td4);
+            table.append(tr2);
+
+            td1 = $("<td>").text("김길동");
+            td2 = $("<td>").text("40");
+            td3 = $("<td>").text("010-2222-2222");
+            td4 = $("<button>").text("del").click(delFunc);
+
+            var tr3 = $("<tr>");
+            tr3.append(td1, td2, td3, td4);
+            table.append(tr3);
+
+            // var tr4 = newTr();
+            // newTd(tr4, "이창호");
+            // newTd(tr4, "45");
+            // newTd(tr4, "010-3333-3333");
+            // addTr(table, tr4);
+
+            $("body").append(table);
+        })
+
+        function delFunc() {
+            console.log(this)
+            $(this).parent().remove();
+        }
+
+        function newTd(tr, str) {
+            var $td = $("<td>").text(str);
+            tr.append($td);
+        }
+
+        function newTr() {
+            var $tr = $("<tr>");
+            return $tr;
+        }
+
+        function addTr(tab, tr) {
+            tab.append(tr);
+        }
+    </script>
+</body>
+
+</html>

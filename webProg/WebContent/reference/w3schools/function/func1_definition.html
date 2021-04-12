@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Function definitions</title>
+</head>
+
+<body>
+    <div id="show"></div>
+    <div id="show1"></div>
+    <div id="show2"></div>
+    <div id="show3"></div>
+    <div id="show4"></div>
+    <script>
+        // function hoisting.
+        document.getElementById("show3").innerHTML = myFunction(2, 5);
+
+        function myFunction(a, b) {
+            return a * b;
+        }
+        document.getElementById("show").innerHTML = myFunction(3, 5);
+
+        var x = function (a, b) { return a + b; }
+        document.getElementById("show1").innerHTML = x(1, 2);
+
+        // Function Constructor.
+        var myFunc = new Function("a", "b", "return a * b");
+        var y = myFunc(4, 9);
+        document.getElementById("show2").innerHTML = y;
+
+        // Self-Invoking Functions
+        (function (a, b) {
+            console.log("hello, this world.");
+            console.log(a * b);
+        })(3, 8);
+
+        // Arrow Functions
+        var myFuncX = function (x, y) {
+            return x * y;
+        }
+        const myFuncY = (x, y) => {
+            console.log("argument a : " + x + " argument b : " + y);
+            return x * y;
+        };
+        document.getElementById("show4").innerHTML = myFuncY(2, 3);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div#show {
+            position: relative;
+            width: 300px;
+            display: inline-block;
+        }
+
+        div#list {
+            position: relative;
+            width: 500px;
+            display: inline-block;
+        }
+    </style>
+    <script>
+        let xhtp = new XMLHttpRequest();
+        xhtp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.response);
+                showEmpData(this.response);
+            }
+        }
+        xhtp.responseType = 'json';
+        xhtp.open('get', '../EmployeeServ');
+        xhtp.send();
+
+        function showEmpData(data) {
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="show">
+        <ul>
+            <li>James</li>
+            <li>Hollye</li>
+            <li>Titlce</li>
+        </ul>
+
+    </div>
+
+    <div id="list">
+        <input type="text" value="James">
+        <input type="text" value="James">
+        <input type="text" value="James">
+
+    </div>
+
+</body>
+
+</html>

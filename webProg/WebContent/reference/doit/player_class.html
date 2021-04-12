@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hide quiz</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $.ajax(
+            {   url: "player_class.jsp",
+                type: "post",
+                success: function(result){
+                    var datas = JSON.parse(result);
+                    $.each(datas, function(i){
+                        $("#show").append($("<li />").text(datas[i]));
+                    })
+                }
+            }
+        );
+
+        $("#btn1").on("click", function(){
+            $("li").each(function(i, o){
+                console.log(i, o);
+            })
+        });
+
+    });
+
+</script>
+</head>
+<body>
+    <h1>Email list </h1>
+    <button id="btn1">show List</button>
+    <div id="show"></div>
+</body>
+</html>

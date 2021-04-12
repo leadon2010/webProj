@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<div id="div1">
+		<p id="p1">This is a paragraph.</p>
+		<p id="p2">This is another paragraph.</p>
+	</div>
+	<table id="tab" border="1">
+		<tr id="tr1">
+			<td>one</td>
+			<td>two</td>
+		</tr>
+	</table>
+
+	<script>
+		var element = document.getElementById("div1");
+
+		var param = document.createElement("p");
+		var node = document.createTextNode("This is new.");
+		param.appendChild(node);
+		element.appendChild(param);
+		
+		var hparm = document.createElement("h1");
+		var hnode = document.createTextNode("This is h1");
+		hparm.appendChild(hnode);
+		element.appendChild(hparm);
+
+		// element.replaceChild(param, hparm);
+
+		// element.removeChild(hparm);
+		// element.remove();
+
+		var tdparm = document.createElement("td");
+		var tdtext = document.createTextNode("three");
+		tdparm.appendChild(tdtext);
+		document.getElementById("tr1").appendChild(tdparm);
+
+		var tdparm1 = document.createElement("td");
+		var tdtext1 = document.createTextNode("four");
+		tdparm1.appendChild(tdtext1);
+
+		document.getElementsByTagName("tr")[0].insertBefore(tdparm1, document.getElementsByTagName("td")[0]);
+		var tdparm2 = document.createElement("td");
+		tdparm2.appendChild(document.createTextNode("five"));
+
+		document.getElementsByTagName("tr")[0].append(tdparm2);
+		// document.getElementsByTagName("tr")[0].appendChild(tdparm2);
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$.getJSON("getJSONSample.json", function (data) {
+				var items = [];
+				$.each(data, function (key, value) {
+					items.push("<li id='" + key + "'>" + value + "</li>");
+				});
+
+				$("<ul />", { "class": "my-new-list", html: items.join("") }).appendTo("body");
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

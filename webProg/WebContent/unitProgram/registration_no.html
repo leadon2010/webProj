@@ -1,0 +1,37 @@
+<script language="javascript">
+// 사업자등록 번호 체크
+// 3-2-5 갯수의 표현으로 체크를 하도록 해야한다.
+function check_bsn(tmp) {
+    if (tmp.value.search(/(\S+)-(\S+)-(\S+)/) == -1) {
+        alert("사업자등록번호의 형식은 '###-##-#####'과 같이 구성되어야 합니다.");
+        tmp.focus();
+        tmp.select();
+        return false;
+    }
+    for (i = 0; i < tmp.value.length; i++) {
+        if (tmp.value.charAt(i) >= '0' && tmp.value.charAt(i) <= '9')
+            continue;
+        else if (tmp.value.charAt(i) == '-')
+            continue;
+        else {
+            alert("사업자등록번호는 숫자, 기호 '-' 만 사용하실 수 있습니다.");
+            tmp.focus();
+            tmp.select();
+            return false;
+        }
+    }
+    return true;
+}
+
+function chk_form() {
+    if (!check_bsn(document.myform.off_number, '사업자번호'))
+        return;
+    else
+        alert("good");
+}
+</script>
+<form name="myform" method="post" action="http://www.naver.com">
+    <input type="text" name="off_number">
+    <input type="button" value="확인" Onclick="javascript:chk_form();">
+    <br> (예)123-45-67890
+</form>

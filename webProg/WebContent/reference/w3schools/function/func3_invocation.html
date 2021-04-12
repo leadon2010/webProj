@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Function Invoking</title>
+</head>
+
+<body>
+    <div id="show"></div>
+
+    <script>
+        // Invoking when call upon a function, start a function, execute a function
+
+        // function belongs to HTML page(window)
+        function myFunction1(a, b) {
+            return a * b;
+        }
+        console.log(window.myFunction1(3, 5)); // window.myFunction1(3, 5);
+
+        // keyword this in function(). 
+        var x = function myFunction2() {
+            return this;
+        };
+        console.log(x());
+
+        // keyword this in method().
+        var myObject = {
+            firstName: "John",
+            lastName: "Doe",
+            fullName: function () {
+                return this.firstName + " " + this.lastName;
+            },
+            myObj: function () {
+                return this;
+            }
+        }
+        console.log(myObject.myObj());
+
+        // invoking in function constructor.
+        function myFunction2(arg1, arg2) {
+            this.firstName = arg1;
+            this.lastName = arg2;
+        }
+        var y = new myFunction2("John", "Doe");
+        document.getElementById("show").innerHTML = y.firstName;
+        console.log(y)
+    </script>
+</body>
+
+</html>

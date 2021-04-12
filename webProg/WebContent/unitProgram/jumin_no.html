@@ -1,0 +1,91 @@
+<SCRIPT language=javascript>
+< !--
+        function insert() {
+            if (document.form_app.serial1.value.length != 6) {
+                alert("올바른 주민등록번호를 입력해주세요.");
+                document.form_app.serial1.focus();
+            } else if (document.form_app.serial2.value.length != 7) {
+                alert("올바른 주민등록번호를 입력해주세요.");
+                document.form_app.serial2.focus();
+            } else {
+                var str_serial1 = document.form_app.serial1.value;
+                var str_serial2 = document.form_app.serial2.value;
+                var digit = 0
+                for (var i = 0; i < str_serial1.length; i++) {
+                    var str_dig = str_serial1.substring(i, i + 1);
+                    if (str_dig < '0' || str_dig > '9') {
+                        digit = digit + 1
+                    }
+                }
+                if ((str_serial1 == '') || (digit != 0)) {
+                    alert('잘못된 주민등록번호입니다.\n\n다시 확인하시고 입력해 주세요.');
+                    document.form_app.serial1.focus();
+                    return false;
+                }
+                var digit1 = 0
+                for (var i = 0; i < str_serial2.length; i++) {
+                    var str_dig1 = str_serial2.substring(i, i + 1);
+                    if (str_dig1 < '0' || str_dig1 > '9') {
+                        digit1 = digit1 + 1
+                    }
+                }
+                if ((str_serial2 == '') || (digit1 != 0)) {
+                    alert('잘못된 주민등록번호입니다.\n\n다시 확인하시고 입력해 주세요.');
+                    document.form_app.serial2.focus();
+                    return false;
+                }
+                if (str_serial1.substring(2, 3) > 1) {
+                    alert('잘못된 주민등록번호입니다.\n\n다시 확인하시고 입력해 주세요.');
+                    document.form_app.serial1.focus();
+                    return false;
+                }
+                if (str_serial1.substring(4, 5) > 3) {
+                    alert('잘못된 주민등록번호입니다.\n\n다시 확인하시고 입력해 주세요.');
+                    document.form_app.serial1.focus();
+                    return false;
+                }
+                if (str_serial2.substring(0, 1) > 4 || str_serial2.substring(0, 1) == 0) {
+                    alert('잘못된 주민등록번호입니다.\n\n다시 확인하시고 입력해 주세요.');
+                    document.form_app.serial2.focus();
+                    return false;
+                }
+                var a1 = str_serial1.substring(0, 1)
+                var a2 = str_serial1.substring(1, 2)
+                var a3 = str_serial1.substring(2, 3)
+                var a4 = str_serial1.substring(3, 4)
+                var a5 = str_serial1.substring(4, 5)
+                var a6 = str_serial1.substring(5, 6)
+                var check_digit = a1 * 2 + a2 * 3 + a3 * 4 + a4 * 5 + a5 * 6 + a6 * 7
+                var b1 = str_serial2.substring(0, 1)
+                var b2 = str_serial2.substring(1, 2)
+                var b3 = str_serial2.substring(2, 3)
+                var b4 = str_serial2.substring(3, 4)
+                var b5 = str_serial2.substring(4, 5)
+                var b6 = str_serial2.substring(5, 6)
+                var b7 = str_serial2.substring(6, 7)
+                var check_digit = check_digit + b1 * 8 + b2 * 9 + b3 * 2 + b4 * 3 + b5 * 4 + b6 * 5
+                check_digit = check_digit % 11
+                check_digit = 11 - check_digit
+                check_digit = check_digit % 10
+                if (check_digit != b7) {
+                    alert('잘못된 주민등록번호입니다.\n\n다시 확인하시고 입력해 주세요.');
+                    document.form_app.serial2.focus();
+                    return false;
+                } else {
+                    age = form_app.serial1.value;
+                    age = age.substring(0, 2);
+                    if (age > 82) { // 기준이 될 연도 두자리 설정
+                        alert('성인만 입장가능합니다');
+                    } else {
+                        location.href = "http://www.blueb.co.kr/"; // 성인인증 후 이동할곳
+                    }
+                }
+            }
+        }
+//-->
+</SCRIPT>
+<FORM name=form_app>주민등록 번호 입력
+    <INPUT maxLength=6 size=7 name=serial1>-
+    <INPUT maxLength=7 size=8 name=serial2>
+    <INPUT onclick=JavaScript:insert() type=button value="확 인">
+    <INPUT type=reset value="취 소"> </FORM>

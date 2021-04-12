@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>autoComplete</title>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script>
+	$(document).ready(function() {
+		var dataSet = [];
+		$.ajax({
+			url : "autoComplete.jsp",
+			success : function(result) {
+				var datas = JSON.parse(result);
+				for (i = 0; i < datas.length; i++) {
+					dataSet.push(datas[i].firstName);
+				}
+			}
+		});
+		$("#emp").autocomplete({
+			source : dataSet
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="test">
+		<label for="emp">Emp</label> <input id="emp" />
+	</div>
+</body>
+</html>

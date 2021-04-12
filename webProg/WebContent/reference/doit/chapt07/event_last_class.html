@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Event</title>
+<style>
+    body{font:14px Malgun Gothic, sans-serif;}
+    .zoomBtnZone{font-size:14px;}
+</style>
+<script src="js/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+        var orginPx = 14;
+        $(".zoomZone button").on("click", zoomInOut);
+        function zoomInOut(){
+            if($(this).hasClass("zoomOut")){
+                orginPx--;
+            }else if ($(this).hasClass("zoomIn")){
+                orginPx++;
+            }else if ($(this).hasClass("origin")){
+                orginPx = 14;
+            }else if ($(this).hasClass("hide")){
+                $("#wrap").css({"display":"none"});
+            }else if ($(this).hasClass("show")){
+                $("#wrap").css({"display":"block"});
+            }
+            $(".fontSize").text(orginPx);
+            $("#wrap").css({fontSize:orginPx + "px"});
+        }
+    })
+</script>
+</head>
+<body>
+    <p class="zoomZone">
+        <button class="zoomOut" >-</button>
+        <button class="origin">100%</button>
+        <button class="zoomIn" >+</button>
+        <button class="hide">Hide</button>
+        <button class="show">Show</button>
+        
+    </p>
+    <p class="fontSize">14px</p>    
+	<div id="wrap">
+        Setting the width of a block-level element will prevent it from stretching out to the edges of its container. Then, you can set the margins to auto, to horizontally center the element within its container. The element will take up the specified width, and the remaining space will be split equally between the two margins:
+	</div>
+
+</body>
+</html>

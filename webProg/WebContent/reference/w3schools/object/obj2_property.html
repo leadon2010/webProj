@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="show"></div>
+	<div id="show1"></div>
+	<script>
+		var txt = "";
+		var person = {firstName: "John", lastName: "Doe", age: 25};
+		for(i in person) {
+			console.log(i);
+			txt += person[i] + ", ";
+        }
+        person.fullName = function() {
+            return this.firstName + " " + this.lastName;
+        }
+        document.getElementById("show").innerText = txt;
+        document.getElementById("show1").innerText = person.fullName();
+	</script>
+</body>
+</html>

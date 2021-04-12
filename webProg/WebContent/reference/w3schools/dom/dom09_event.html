@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function myFunction() {
+		var x = document.getElementById("fname");
+		x.value = x.value.toUpperCase();
+	}
+	function onFocus(elem) {
+		elem.style.background = "yellow";
+	}
+	function onBlur(elem) {
+		elem.style.background = "white";
+	}
+</script>
+</head>
+<body>
+	<div onmouseover="mOver(this)" onmouseout="mOut(this)"
+		style="background-color: #D94A38; width: 120px; height: 20px; padding: 40px;">Mouse
+		Over</div>
+	<br>
+	<div onmousedown="mDown(this)" onmouseup="mUp(this)"
+		style="background-color: #D94A38; width: 90px; height: 20px; padding: 40px;">
+		Click Me</div>
+	<br>Enter your name:
+	<input type="text" id="fname" onchange="myFunction()"
+		onfocus="onFocus(this)" onblur="onBlur(this)">
+	<br>
+
+	<script>
+		function mOver(obj) {
+			console.log(obj);
+			obj.innerHTML = "Thank you";
+		}
+		function mOut(obj) {
+			obj.innerHTML = "Mouse Over Me";
+		}
+
+		function mDown(obj) {
+			console.log(obj);
+			obj.style.backgroundColor = "#1ec5e5";
+			obj.innerHTML = "Release Me";
+		}
+
+		function mUp(obj) {
+			console.log(obj);
+			obj.style.backgroundColor = "#D94A38";
+			obj.innerHTML = "Thank You";
+		}
+	</script>
+</body>
+</html>

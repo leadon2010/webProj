@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <h1>today to-do List<h1>
+            <ul class="itemList">
+                <li>
+                    <input type="checkbox" id="item1">
+                    <label for="item1">event bubbling study</label>
+                </li>
+                <li>
+                    <input type="checkbox" id="item2">
+                    <label for="item2">event capture study</label>
+                </li>
+            </ul>
+
+            <script>
+                // var inputs = document.querySelectorAll("input");
+                // inputs.forEach(function (input) {
+                //     inputs.addEventListener('click', function (event) {
+                //         alert("clicked");
+                //     })
+                // });
+
+                var itemList = document.querySelector(".itemList");
+                itemList.addEventListener("click", function(event){
+                    alert("click")
+                })
+
+                var itemList = document.querySelector(".itemList");
+                var li = document.createElement("li");
+                var input = document.createElement("input");
+                var label = document.createElement("label");
+                var labelText = document.createTextNode(" delegation study");
+
+                input.setAttribute("type", "checkbox");
+                input.setAttribute("id", "item3");
+                label.setAttribute("for", "item3");
+                label.appendChild(labelText);
+                li.appendChild(input);
+                li.appendChild(label);
+                itemList.appendChild(li);
+
+            </script>
+</body>
+
+</html>

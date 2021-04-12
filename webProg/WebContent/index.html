@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+		let today = new Date();
+		today = to_format(today, 'yyyy-mm-dd');
+		console.log(today);
+
+		function to_format(date, format) {
+			let tDate = date;
+			let year = tDate.getFullYear();
+			let month = tDate.getMonth() + 1;
+			let todate = tDate.getDate();
+			year = year.toString();
+			month = month.toString();
+			todate = todate > 9 ? todate.toString() : '0' + todate.toString();
+			return year + '-' + month + '-' + todate;
+		}
+	</script>
+</head>
+
+<body>
+	<h1>JavaScript Project</h1>
+	<a href='index.jsp'>index.jsp</a>
+</body>
+
+</html>

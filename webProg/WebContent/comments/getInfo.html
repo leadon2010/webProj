@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        li {
+            font-size: large;
+            /* border: 1px dotted green; */
+            border-bottom: 1px solid green;
+            width: 100px;
+
+        }
+
+        button {
+            background-color: rgb(16, 109, 231);
+            width: 100px;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        button:hover {
+            border: 2px solid rgb(16, 109, 231);
+        }
+
+        .active {
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h3 id="header">javaScript Header</h3>
+    <button id="myBtn">Click</button>
+    <ul id="our-list">
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+        <li>Forth item</li>
+        <li>Fifth item</li>
+    </ul>
+    <script>
+        var itemCounter = 1;
+        var myBtn = document.getElementById('myBtn');
+        myBtn.addEventListener('click', addItemFnc);
+        var myHeader = document.getElementById('header');
+        var ourList = document.querySelector('#our-list')
+        ourList.addEventListener("click", activateItem);
+
+        function activateItem(e) {
+            // console.log(e.target.nodeName);
+            var listItems = document.querySelectorAll("ul li");
+            listItems.forEach((element, idx) => {
+                console.log(idx)
+                element.classList.remove('active');
+            });
+            if (e.target.nodeName == 'LI') {
+                e.target.classList.add("active");
+            }
+        }
+
+        function deactivateFnc(e, d, c) {
+            console.log(c)
+            e.parentNode.children.classList.remove("active");
+        }
+
+        function addItemFnc(e) {
+            console.log(e);
+            var $li = document.createElement("li");
+            var $text = document.createTextNode('New item ' + itemCounter++);
+            $li.appendChild($text);
+            ourList.appendChild($li);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var today = new Date();
+            var thisYear = today.getFullYear();
+            var thisMonth = today.getMonth();
+            var lastDate = new Date(thisYear, (thisMonth + 1), 0).getDate();
+            var thisDay = new Date(thisYear, thisMonth, 1).getDay();
+
+            var $tableTag = $("<table border=1 />");
+            var $trTag = $("<tr />");
+            var dayAry = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+            for(var i=0;i<7;i++){
+                $trTag.append($("<th />").text(dayAry[i]));
+            }
+            $tableTag.append($trTag);
+            var $trTag = $("<tr />");
+            var blank = 0;
+            for(blank=0; blank<thisDay; blank++){
+                $trTag.append($("<td >").text(" "));
+            }
+
+            for (var i = 1; i <= lastDate; i++) {
+                if((blank+i)%7 == 0)
+                    $trTag.append($("<td >").text(i).css("background-color","cyan"));
+                else if((blank+i)%7 == 1)
+                    $trTag.append($("<td >").text(i).css("background-color","red"));
+                else if(i == today.getDate())
+                    $trTag.append($("<td >").text(i).css("background-color","yellow"));
+                else
+                    $trTag.append($("<td >").text(i));
+                if ((blank+i) % 7 == 0){
+                    var $trTag = $("<tr />");
+                }
+                $tableTag.append($trTag);
+            }
+            $("#calendar").append($tableTag);
+        })
+    </script>
+</head>
+
+<body>
+    <div id="calendar"></div>
+</body>
+
+</html>

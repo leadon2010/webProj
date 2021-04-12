@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+table, td {
+	border: 1px solid black;
+}
+</style>
+</head>
+
+<body>
+	<p>Click the button to add a new row at the first position of the
+		table and then add cells and content.</p>
+	<table id="myTable">
+		<tr>
+			<td>Row1 cell1</td>
+			<td>Row1 cell2</td>
+		</tr>
+		<tr>
+			<td>Row2 cell1</td>
+			<td>Row2 cell2</td>
+		</tr>
+		<tr>
+			<td>Row3 cell1</td>
+			<td>Row3 cell2</td>
+		</tr>
+	</table>
+	<br>
+	<button onclick="addTr()">add Tr</button>
+	<script>
+		function addTr() {
+			var tr1 = document.createElement("tr");
+			var td1 = document.createElement("td");
+			var td2 = document.createElement("td");
+			var txt1 = document.createTextNode("txt1");
+			var txt2 = document.createTextNode("txt2");
+			td1.appendChild(txt1);
+			td2.appendChild(txt2);
+			tr1.appendChild(td1);
+			tr1.appendChild(td2);
+			document.getElementById("myTable").appendChild(tr1);
+		}
+	</script>
+	<button onclick="myFunction()">Try it</button>
+	<script>
+		function myFunction() {
+			var table = document.getElementById("myTable");
+			var row = table.insertRow();
+			var cell1 = row.insertCell();
+			var cell2 = row.insertCell();
+			var cell3 = row.insertCell();
+			cell1.innerHTML = "NEW CELL1";
+			cell2.innerHTML = "NEW CELL2";
+			cell3.innerHTML = "NEW CELL3";
+		}
+	</script>
+	<button onclick="delRow()">del</button>
+	<script>
+		function delRow() {
+			var cnt = document.getElementsByTagName("tr");
+			document.getElementById("myTable").deleteRow(cnt.length - 1);
+		}
+	</script>
+</body>
+
+</html>

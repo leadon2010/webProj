@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "ajax": 'arrays.txt'
+            });
+
+            $("#btn1").on("click", function () {
+                $.ajax({
+                    url: "sampleData.json",
+                    dataType: "json",
+                    success: function (result) {
+                        for (i in result.data) {
+                            var j = 0;
+                            //console.log(result.data[i][j++], result.data[i][j++], result.data[i][j++], result.data[i][j++], result.data[i][j++], result.data[i][j++]);
+                            // insert into database.
+                            $.ajax({
+                                url: "createData.jsp",
+                                type: "post",
+                                data: {
+                                    "full_name": result.data[i][j++],
+                                    "position": result.data[i][j++],
+                                    "office": result.data[i][j++],
+                                    "extn": result.data[i][j++],
+                                    "start_date": result.data[i][j++],
+                                    "salary": result.data[i][j++]
+                                },
+                                success: function () {
+                                    console.log(i, "success");
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR.responseText);
+                                }
+                            })
+                        }
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <button id="btn1">Create Data</button>
+    <div id="rslt1"></div>
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>

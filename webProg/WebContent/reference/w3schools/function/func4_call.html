@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+            fullName: function () {
+                return this.firstName + " " + this.lastName;
+            }
+        }
+        console.log(person.fullName());
+
+        var person1 = {
+            firstName: "John", lastName: "Doe"
+        }
+        var person2 = {
+            firstName: "Mary", lastName: "Doe"
+        }
+        console.log(person.fullName.call(person1));
+        console.log(person.fullName.apply(person2));
+
+        var person = {
+            fullName: function (city, country) {
+                return this.firstName + " " + this.lastName + ", " + city + ", " + country;
+            }
+        }
+        console.log(person.fullName.call(person2, 'Oslo', 'Norway'));
+        console.log(person.fullName.apply(person1, ['Seoul', 'Korea']));
+
+    </script>
+</body>
+
+</html>

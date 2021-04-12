@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>innerHTML</title>
+</head>
+
+<body>
+
+	id01:<h1 id="id01">My First Page</h1>
+	id02:<p id="id02"></p>
+	nodeName:<p id="id03"></p>
+	nodeValue:<p id="id04"></p>
+	nodeType:<p id="id05"></p>
+
+	<button onclick="innerHTML1()">innerHTML1</button>
+	<button onclick="innerHTML2()">innerHTML2</button>
+
+	<script>
+		document.getElementById("id02").innerHTML = document.getElementById("id01").innerHTML + " add";
+		document.getElementById("id02").innerHTML = document.getElementById("id01").firstChild.nodeValue + " bdd";
+		document.getElementById("id02").innerHTML = document.getElementById("id01").childNodes[0].nodeValue + " cdd";
+
+		function innerHTML1() {
+			console.log(document.body.innerHTML);
+		}
+
+		function innerHTML2() {
+			console.log(document.documentElement.innerHTML);
+		}
+
+		//nodeName property 
+		document.getElementById("id03").innerHTML = document.getElementById("id01").nodeName;
+
+		//nodeValue property
+		document.getElementById("id04").innerHTML = document.getElementById("id01").childNodes[0].nodeValue;
+
+		//nodeValue property
+		document.getElementById("id05").innerHTML = document.getElementById("id01").nodeType;
+	</script>
+
+</body>
+
+</html>

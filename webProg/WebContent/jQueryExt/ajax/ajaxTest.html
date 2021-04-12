@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			url : "emp.jsp",
+			success : function(result) {
+				$('div').html(result);
+			}
+		});
+		
+		$("#myInput").on("keyup", function(){
+			var value = $(this).val().toLowerCase();
+			$("table tr ").filter(function(){
+				console.log($(this).text().toLowerCase(), $(this).text().toLowerCase().indexOf(value))
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<input id="myInput" type="text" placeholder="Search..">
+    <br>
+	<div id="demo">
+	</div>
+</body>
+</html>

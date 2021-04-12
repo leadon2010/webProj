@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>map demo</title>
+    <style>
+        body {
+            font-size: 16px;
+        }
+
+        ul {
+            float: left;
+            margin: 0 30px;
+            color: blue;
+        }
+
+        #results {
+            color: red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+
+    <ul>
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+        <li>Fourth</li>
+        <li>Fifth</li>
+    </ul>
+    <ul id="results">
+    </ul>
+
+    <script>
+        $(function () {
+            var jQr = $.noConflict();
+            jQr("li").map(function () {
+                console.log(jQr("li").get())
+
+            })
+
+        })
+    </script>
+
+</body>
+
+</html>

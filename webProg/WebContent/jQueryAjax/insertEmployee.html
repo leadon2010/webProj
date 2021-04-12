@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input:button").on("click", function () {
+                var params = $("#frm").serialize();
+                console.log(params);
+                $.ajax({
+                    url: "../../EmpServlet",
+                    type: "post",
+                    data: params,
+                    success: function () {
+                        console.log("success");
+                    }
+                });
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <form id="frm" action="">
+        <input type="hidden" name="action" value="insert">
+        LastName:<input type="text" name="lastName" value="Scott"><br>
+        Email:<input type="email" name="email" value="scott@oracle.com"><br>
+        HireDate:<input type="date" name="hireDate"><br>
+        Job:<input type="text" name="jobId" value="IT_PROG"><br>
+        <input type="button" value="OK"><br>
+    </form>
+    <a href="listEmployees.html">리스트화면</a>
+</body>
+
+</html>

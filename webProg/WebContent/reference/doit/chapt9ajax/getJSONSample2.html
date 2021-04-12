@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script>
+		$(document).ready(function () {
+			var jqxhr = $.getJSON("getJSONSample.json", function () {
+				console.log("success");
+			}).done(function () {
+				console.log("second success");
+			}).fail(function () {
+				console.log("error");
+			}).always(function () {
+				console.log("complete");
+			});
+
+			// Perform other work here ...
+
+			// Set another completion function for the request above
+			jqxhr.complete(function () {
+				console.log("second complete");
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
