@@ -59,7 +59,15 @@
 		show.innerHTML = screen.availWidth + ' , ' + screen.availHeight;
 		show.innerHTML = window.innerWidth + ' , ' + window.innerHeight;
 
-		
+		let result = 1;
+		for (let i = 1; i <= 200; i++) {
+			result *= i;
+		}
+
+		window.storeValue = function (name, value) {
+			localStorage.setItem(name, value);
+		}
+		console.log(this);
 	</script>
 </body>
 
