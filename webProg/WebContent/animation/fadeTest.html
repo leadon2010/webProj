@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script>
-	$(function() {
-		$(".btn2").hide(3000);
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script>
+		$(function () {
+			$(".btn2").hide(3000);
 
-		$(".btn1").on("click", function() {
-			$(".box").slideUp(1000, "linear", function() {
-				$(".btn1").hide();
-				$(".btn2").show();
+			$(".btn1").on("click", function () {
+				$(".box").slideUp(1000, "linear", function () {
+					$(".btn1").hide();
+					$(".btn2").show();
+				})
+			})
+
+			$(".btn2").on("click", function () {
+				$(".box").fadeIn(1000, "swing", function () {
+					$(".btn2").hide();
+					$(".btn1").show();
+				})
+			})
+
+			$(".btn3").on("click", function () {
+				$(".box").slideToggle(1000, "linear");
+			})
+
+			$(".btn4").on("click", function () {
+				$(".box").fadeTo("fast", 0.3);
+			})
+
+			$(".btn5").on("click", function () {
+				$(".box").fadeTo("fast", 1);
 			})
 		})
-
-		$(".btn2").on("click", function() {
-			$(".box").fadeIn(1000, "swing", function() {
-				$(".btn2").hide();
-				$(".btn1").show();
-			})
-		})
-
-		$(".btn3").on("click", function() {
-			$(".box").slideToggle(1000, "linear");
-		})
-
-		$(".btn4").on("click", function() {
-			$(".box").fadeTo("fast", 0.3);
-		})
-
-		$(".btn5").on("click", function() {
-			$(".box").fadeTo("fast", 1);
-		})
-	})
-</script>
+	</script>
 </head>
+
 <body>
 	<p>
 		<button class="btn1">slideUp</button>
@@ -52,4 +54,5 @@
 		<div class="content">Contents......end</div>
 	</div>
 </body>
+
 </html>
