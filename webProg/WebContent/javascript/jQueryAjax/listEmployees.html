@@ -80,7 +80,11 @@
             console.log(empId, salary);
             $.ajax({
                 url: "../../EmpServlet",
-                data: { "action": "update", "empId": empId, "salary": salary },
+                data: {
+                    "action": "update",
+                    "empId": empId,
+                    "salary": salary
+                },
                 success: function () {
                     console.log("updated.")
                     $("#" + empId).children().eq(4).text(salary);
@@ -88,7 +92,6 @@
                 }
             });
         }
-
     </script>
 </body>
 
