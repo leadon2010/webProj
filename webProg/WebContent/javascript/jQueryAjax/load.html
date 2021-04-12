@@ -11,7 +11,13 @@
         $(document).ready(function () {
             $('#show').load('ajax_info.txt');
 
-            $.post();
+            $.get('jsonData.json', {
+                name: 'john',
+                role: 'admin'
+            }, function (data) {
+                console.log(data)
+            });
+            // $.post();
         });
     </script>
 </head>
