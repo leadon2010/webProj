@@ -1,8 +1,9 @@
 package ajax;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +27,14 @@ public class AjaxParam extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		Map<String, String[]> map = request.getParameterMap();
-		String res = getMap(map, request, response).toString();
+//		String res = getMap(map, request, response).toString();
+		String res = getArgs(map);
+		System.out.println(res);
+
 		response.getWriter().println(res);
 
 	}
@@ -36,6 +42,26 @@ public class AjaxParam extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	public String getArgs(Map<String, String[]> args) {
+		String result = "[{";
+		Set<Map.Entry<String, String[]>> set = args.entrySet();
+		Iterator<Map.Entry<String, String[]>> iter = set.iterator();
+		while (iter.hasNext()) {
+			Map.Entry<String, String[]> ent = iter.next();
+			result += "\"" + ent.getKey() + "\":[";
+			for (int i = 0; i < ent.getValue().length; i++) {
+				result += "\"" + ent.getValue()[i] + "\"" + (i == ent.getValue().length - 1 ? "" : ",");
+			}
+			result += "]";
+			if (iter.hasNext()) {
+				result += ",";
+			}
+		}
+		result += "}]";
+
+		return result;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -53,6 +79,20 @@ public class AjaxParam extends HttpServlet {
 		});
 		ary.add(obj);
 		System.out.println(ary);
+
+//		map.forEach(new BiConsumer<String, String[]>() {
+//
+//			@Override
+//			public void accept(String t, String[] u) {
+//				String[] args = req.getParameterValues(t);
+//				JSONArray inner = new JSONArray();
+//				for (String arg : args) {
+//					inner.add(arg);
+//				}
+//				obj.put(t, inner);
+//			}
+//		});
+//		ary.add(obj);
 
 		return ary;
 	}
