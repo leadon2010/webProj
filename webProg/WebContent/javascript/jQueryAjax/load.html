@@ -9,21 +9,64 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#show').load('ajax_info.txt');
+            // $('#show').load('ajax_info.txt');
 
-            $.get('jsonData.json', {
-                name: 'john',
-                role: 'admin'
-            }, function (data) {
-                console.log(data)
-            });
-            // $.post();
+            // $.get('jsonData.json', {
+            //     name: 'john',
+            //     role: 'admin'
+            // }, function (data) {
+            //     console.log(data)
+            // });
+
+            // $.get('get.jsp', {
+            //     name: 'Hong',
+            //     age: 15
+            // }, function (data) {
+            //     console.log(data)
+            // }, 'json');
+
+            // $.ajax({
+            //     url: 'get.jsp',
+            //     type: 'post',
+            //     data: {
+            //         name: 'Hong',
+            //         age: 24
+            //     },
+            //     dataType: 'json',
+            //     success: function (data) {
+            //         console.log(data);
+            //     },
+            //     error: function (reject) {
+            //         console.log(reject);
+            //     }
+            // });
+            $('#frm').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $('#frm').attr('action'),
+                    data: $('#frm').serializeArray(),
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+
+            })
         });
     </script>
 </head>
 
 <body>
-    <p id="show"></p>
+    <form action="loadJSON.jsp" id='frm' method='post'>
+        <input type="text" name="name" id="">
+        <input type="text" name="age" id="">
+        <input type='checkbox' name='fruit' value='Apple'>Apple
+        <input type='checkbox' name='fruit' value='Banana'>Banana
+        <input type='checkbox' name='fruit' value='Cherry'>Cherry
+        <input type="submit" value="OK">
+        <input type="reset" value="Cancel">
+    </form>
 </body>
 
 </html>
