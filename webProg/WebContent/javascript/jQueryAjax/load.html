@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div {
+            margin: 10px;
+        }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -50,6 +55,11 @@
                     success: function (data) {
                         console.log(data);
                     }
+                }).done(function () {
+                    alert('success!!');
+                    $('#name').val('');
+                    $('#age').val('');
+                    $('input[name="fruit"]').prop('checked', false);
                 });
 
             })
@@ -58,15 +68,21 @@
 </head>
 
 <body>
-    <form action="loadJSON.jsp" id='frm' method='post'>
-        <input type="text" name="name" id="">
-        <input type="text" name="age" id="">
-        <input type='checkbox' name='fruit' value='Apple'>Apple
-        <input type='checkbox' name='fruit' value='Banana'>Banana
-        <input type='checkbox' name='fruit' value='Cherry'>Cherry
-        <input type="submit" value="OK">
-        <input type="reset" value="Cancel">
-    </form>
+    <div>
+        <form action="loadJSON.jsp" id='frm' method='post'>
+            <div>이름: <input type="text" name="name" id="name"></div>
+            <div>나이: <input type="text" name="age" id="age"></div>
+            <div>취미:
+                <input type='checkbox' name='fruit' value='Apple'>Apple
+                <input type='checkbox' name='fruit' value='Banana'>Banana
+                <input type='checkbox' name='fruit' value='Cherry'>Cherry
+            </div>
+            <div style="text-align: center; width: 250px;">
+                <input type="submit" value="OK">
+                <input type="reset" value="Cancel">
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
