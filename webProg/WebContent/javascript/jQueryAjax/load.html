@@ -47,19 +47,25 @@
             // });
             $('#frm').submit(function (e) {
                 e.preventDefault();
-
+                let cnt = 0;
                 $.ajax({
                     url: $('#frm').attr('action'),
                     data: $('#frm').serializeArray(),
                     dataType: 'json',
                     success: function (data) {
                         console.log(data);
+                        console.log('success', ++cnt);
                     }
-                }).done(function () {
+                }).done(function (arg) {
+                    console.log('done', arg);
                     alert('success!!');
-                    $('#name').val('');
-                    $('#age').val('');
-                    $('input[name="fruit"]').prop('checked', false);
+                    //$('#name').val('');
+                    //$('#age').val('');
+                    //$('input[name="fruit"]').prop('checked', false);
+                }).fail(function (reject) {
+                    console.error('error', reject);
+                }).always(function (arg) {
+                    console.log('always', arg);
                 });
 
             })
