@@ -20,7 +20,7 @@
                 // console.log(result.datas);
                 var datas = result.datas;
                 var table, tr, th, td;
-                table = $("<table>");
+                table = $("<table border='1' />");
                 tr = $("<tr>");
                 for (title in datas[0]) {
                     th = $("<th>").text(title);
@@ -43,7 +43,7 @@
         });
 
         function changeFunc(e) {
-            console.log(e, this);
+            console.log(e.target, this);
             var lastName = $(this).children().eq(0).text();
             var firstName = $(this).children().eq(1).text();
             var hireDate = $(this).children().eq(2).text();
