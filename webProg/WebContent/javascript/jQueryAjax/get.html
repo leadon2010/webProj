@@ -7,6 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.get('jsonData.json', //
+                function (data, status, xhr) {
+                    console.log('data', this, data, status, xhr);
+                }
+            ).done(function (resolve) {
+                console.log('resolve', this, resolve);
+            }).fail(function (reject) {
+                console.log('reject', this, reject);
+            }).always(function (result) {
+                console.log('result', this, result);
+            });
+        });
+    </script>
 </head>
 
 <body>
