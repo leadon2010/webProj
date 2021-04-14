@@ -8,8 +8,11 @@
     <title>Document</title>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
-        $.get('cd_catalog.xml', function (data, status, xhr) {
+        $.post('../../postData', function (data, status, xhr) {
                 console.log(data, status, xhr);
+                let doc = data;
+                let content = $(doc).find('major').html();
+                console.log(content);
             }, 'xml') //
             .done(resolve => {
                 console.log(resolve);

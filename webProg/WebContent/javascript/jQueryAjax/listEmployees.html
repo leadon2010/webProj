@@ -42,6 +42,20 @@
             }
         });
 
+        function changeFunc(e) {
+            console.log(e, this);
+            var lastName = $(this).children().eq(0).text();
+            var firstName = $(this).children().eq(1).text();
+            var hireDate = $(this).children().eq(2).text();
+            var empId = $(this).children().eq(3).text();
+            var salary = $(this).children().eq(4).text();
+            var tr = $("<tr>");
+            tr.append($("<td>").text(lastName), $("<td>").text(firstName), $("<td>").text(hireDate));
+            tr.append($("<td>").text(empId), $("<td>").html($("<input>").val(salary)));
+            tr.append($("<td>").html($("<button>").text("change").click(updateFunc)));
+            $(this).after(tr);
+        }
+
         function delFunc() {
             var trId = $(this).parent().parent().attr("id");
             $.ajax({
@@ -59,19 +73,7 @@
             });
         }
 
-        function changeFunc() {
-            console.log(this);
-            var lastName = $(this).children().eq(0).text();
-            var firstName = $(this).children().eq(1).text();
-            var hireDate = $(this).children().eq(2).text();
-            var empId = $(this).children().eq(3).text();
-            var salary = $(this).children().eq(4).text();
-            var tr = $("<tr>");
-            tr.append($("<td>").text(lastName), $("<td>").text(firstName), $("<td>").text(hireDate));
-            tr.append($("<td>").text(empId), $("<td>").html($("<input>").val(salary)));
-            tr.append($("<td>").html($("<button>").text("change").click(updateFunc)));
-            $(this).after(tr);
-        }
+
 
         function updateFunc() {
             var empId = $(this).parent().prev().prev().text();
