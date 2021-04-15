@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>variable.html</title>
+</head>
+<body>
+	<script>
+		var num1 = 10;
+		var num2 = 20;
+		var result = num1 + num2;
+		result = 'Hello';
+		result = true;
+		result = new Object();
+		result.name = 'Hong';
+		result.age = 10;
+		console.log(typeof result);
+		console.log(result);
+
+		var evenSum = 0;
+		var oddSum = 0;
+
+		for (var i = 0; i < 10; i++) {
+			if (i % 2 == 0) {
+				evenSum += i;
+			} else {
+				oddSum += i;
+			}
+		}
+		console.log(evenSum);
+		console.log(oddSum);
+
+		var iVal = 0;
+		document.write('<table border="1">');
+		do {
+			var name = window.prompt('이름을 입력.');
+			var score = window.prompt('점수를 입력.');
+			console.log(name, score);
+			document.write('<tr><td>' + name + '</td>');
+			document.write('<td>' + score + '</td></tr>');
+		} while (iVal++ < 3);
+		document.write('</table>');
+		
+		window.prompt('end??')
+		document.write('<h1>End</h1>');
+	</script>
+</body>
+</html>
