@@ -43,7 +43,7 @@
         });
 
         function changeFunc(e) {
-            console.log(e.target, this);
+            console.log(e.target.parent.find(''), this);
             var lastName = $(this).children().eq(0).text();
             var firstName = $(this).children().eq(1).text();
             var hireDate = $(this).children().eq(2).text();
