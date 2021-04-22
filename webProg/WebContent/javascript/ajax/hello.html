@@ -8,7 +8,14 @@
 </head>
 <body>
     
-   <p id="new1">Contrary to popular</p>
-   <p id="new2">The standard chunk of</p>
+   <script>
+   		var xhtp = new XMLHttpRequest();
+   		xhtp.open('post', '../../deleteServlet.do');
+   		xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   		xhtp.send('id=30&pass=1234');
+   		xhtp.onreadystatechange = function(){
+   			console.log(xhtp.responseText);
+   		}
+   </script>
 </body>
 </html>
