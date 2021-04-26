@@ -6,28 +6,39 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			line-height: 1;
+		}
+
+		#wrap {
+			height: 1000px;
+			padding: 1200px;
+		}
+	</style>
+	<script src="javascript/js/jquery-3.3.1.min.js"></script>
+	<script>
+		$(function () {
+			let topNum = $('h1').offset().top;
+			console.log(100);
+			$(window).scrollTop(topNum)
+			$(window).scrollLeft(400);
+
+			let sct = $(window).scrollTop();
+			console.log(sct);
+		})
+	</script>
 </head>
 
 <body>
-	<div class="box1">
-		<p>내용1</p>
-		<p>내용2</p>
+	<div id="wrap">
+		<h1>위치</h1>
 	</div>
-	<div class="box2">
-		<p>내용(3)</p>
-		<p>내용(4)</p>
-	</div>
-	<div class="box3">
-		<p>내용5</p>
-		<p>내용6</p>
-	</div>
-
-	<script>
-		let copyObj = $('.box1').clone();
-		console.log(copyObj);
-		$('body').append(copyObj);
-	</script>
 </body>
 
 </html>
