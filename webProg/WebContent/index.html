@@ -1,73 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<style>
-		.small {
-			display: none;
-		}
-
-		.large {
-			display: block;
-		}
-
-		@media screen and (max-width: 980px) {
-			* {
-				font-size: 50px;
-			}
-
-			.small {
-				display: block;
-			}
-
-			.large {
-				display: none;
-			}
-		}
-	</style>
-	<script>
-		let today = new Date();
-		today = to_format(today, 'yyyy-mm-dd');
-		console.log(`오늘의 날짜는 ${today}`);
-
-		function to_format(date, format) {
-			let tDate = date;
-			let year = tDate.getFullYear();
-			let month = tDate.getMonth() + 1;
-			let todate = tDate.getDate();
-			year = year.toString();
-			month = month.toString();
-			todate = todate > 9 ? todate.toString() : '0' + todate.toString();
-			return year + '-' + month + '-' + todate;
-		}
-	</script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-	<div class="large">
-		<h1>webProj Project</h1>
-		<a href='index.jsp'>index.jsp</a>
+	<div class="box1">
+		<p>내용1</p>
+		<p>내용2</p>
+	</div>
+	<div class="box2">
+		<p>내용(3)</p>
+		<p>내용(4)</p>
+	</div>
+	<div class="box3">
+		<p>내용5</p>
+		<p>내용6</p>
+	</div>
 
-	</div>
-	<div class="small">webProj show Content
-		<div id="show"></div>
-	</div>
 	<script>
-		let show = document.getElementById('show');
-		show.innerHTML = screen.availWidth + ' , ' + screen.availHeight;
-		show.innerHTML = window.innerWidth + ' , ' + window.innerHeight;
-
-		let result = 1;
-		for (let i = 1; i <= 200; i++) {
-			result *= i;
-		}
-
-		window.storeValue = function (name, value) {
-			localStorage.setItem(name, value);
-		}
-		console.log(this);
+		let copyObj = $('.box1').clone();
+		console.log(copyObj);
+		$('body').append(copyObj);
 	</script>
 </body>
 

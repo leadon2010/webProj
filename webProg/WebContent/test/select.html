@@ -6,21 +6,21 @@
     <title>Insert title here</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        // $(function () {
-        // 	$("#plus").on("click", function (e) {
-        // 		$("#rejects").append($("#subjects :selected"));
-        // 		$("#rejects").children().each(function () {
-        // 			$(this).attr("class", "rjt");
-        // 		})
-        // 	});
+        $(function () {
+        	$("#plus").on("click", function (e) {
+        		$("#rejects").append($("#subjects :selected"));
+        		$("#rejects").children().each(function () {
+        			$(this).attr("class", "rjt");
+        		})
+        	});
 
-        // 	$("#minus").on("click", function () {
-        // 		$("#subjects").append($("#rejects :selected"));
-        // 		$("#subjects").children().each(function () {
-        // 			$(this).attr("class", "opt");
-        // 		})
-        // 	})
-        // })
+        	$("#minus").on("click", function () {
+        		$("#subjects").append($("#rejects :selected"));
+        		$("#subjects").children().each(function () {
+        			$(this).attr("class", "opt");
+        		})
+        	})
+        })
     </script>
 </head>
 
@@ -46,23 +46,23 @@
     </form>
 
     <script>
-        let plus = document.getElementById('plus');
-        plus.onclick = function () {
-            let selIndex = document.getElementById('subjects').selectedIndex;
-            let subs = document.querySelectorAll('#subjects>option');
-            let selected = subs[selIndex];
+        // let plus = document.getElementById('plus');
+        // plus.onclick = function () {
+        //     let selIndex = document.getElementById('subjects').selectedIndex;
+        //     let subs = document.querySelectorAll('#subjects>option');
+        //     let selected = subs[selIndex];
 
-            document.getElementById('rejects').append(selected);
-        }
+        //     document.getElementById('rejects').append(selected);
+        // }
 
-        let minus = document.getElementById('minus');
-        minus.onclick = function () {
-            let selIndex = document.getElementById('rejects').selectedIndex;
-            let rejs = document.querySelectorAll('#rejects>option');
-            let selected = rejs[selIndex];
+        // let minus = document.getElementById('minus');
+        // minus.onclick = function () {
+        //     let selIndex = document.getElementById('rejects').selectedIndex;
+        //     let rejs = document.querySelectorAll('#rejects>option');
+        //     let selected = rejs[selIndex];
 
-            document.getElementById('subjects').append(selected);
-        }
+        //     document.getElementById('subjects').append(selected);
+        // }
     </script>
 </body>
 

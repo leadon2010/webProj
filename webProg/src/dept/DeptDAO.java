@@ -1,19 +1,16 @@
 package dept;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import common.DbCon;
+import common.DAO;
 
-public class DeptDAO {
+public class DeptDAO extends DAO {
+
 	public List<Departments> getDeptList() {
-		DbCon con = new DbCon();
-		PreparedStatement pstmt = null;
-		Connection conn = con.connect();
+
 		Departments dept = null;
 		List<Departments> list = new ArrayList<>();
 		String sql = "select department_id, department_name, manager_id, location_id from departments order by 1";
@@ -34,4 +31,5 @@ public class DeptDAO {
 		}
 		return list;
 	}
+
 }
