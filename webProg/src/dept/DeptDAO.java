@@ -10,6 +10,7 @@ import common.DAO;
 public class DeptDAO extends DAO {
 
 	public List<Departments> getDeptList() {
+		connect();
 
 		Departments dept = null;
 		List<Departments> list = new ArrayList<>();
