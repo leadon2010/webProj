@@ -6,39 +6,56 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<script src="javascript/js/jquery-3.3.1.min.js"></script>
 	<style>
-		* {
-			margin: 0;
-			padding: 0;
+		#show {
+			background-color: yellow;
+			width: 500px;
+			height: 400px;
 		}
 
-		body {
-			line-height: 1;
-		}
-
-		#wrap {
-			height: 1000px;
-			padding: 1200px;
+		.item {
+			width: 50px;
+			height: 30px;
+			display: inline-block;
+			background-color: aqua;
+			border: 1px dotted greenyellow;
 		}
 	</style>
-	<script src="javascript/js/jquery-3.3.1.min.js"></script>
 	<script>
 		$(function () {
-			let topNum = $('h1').offset().top;
-			console.log(100);
-			$(window).scrollTop(topNum)
-			$(window).scrollLeft(400);
+			$('#name').keypress(function (e) {
+				console.log(e.keyCode);
+				if (e.keyCode == 13) {
+					let inp = $(this).val();
+					$('#show').append($('<div />').html(inp).addClass('item'));
+					$(this).val(null);
+				}
+			});
 
-			let sct = $(window).scrollTop();
-			console.log(sct);
+			$('#eman').bind('keydown', function (e) {
+				if (e.keyCode == 13) {
+					let sword = $(this).val();
+					let cont = $('#show').contents();
+					for (let i = 0; i < cont.length; i++) {
+						console.log(cont[i]);
+						if (cont[i].innerHTML == sword) {
+							cont[i].remove();
+						}
+					}
+					$(this).val(null);
+				}
+			})
+
+			$('input[name="name"]').focus();
 		})
 	</script>
 </head>
 
 <body>
-	<div id="wrap">
-		<h1>위치</h1>
-	</div>
+	<input type="text" name="name" id="name">
+	<div id="show"></div>
+	<input type="text" name="eman" id="eman">
 </body>
 
 </html>
