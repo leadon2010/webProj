@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <img src="" class='my-image'>
     <script>
         const data = {
             username: 'example'
@@ -19,13 +20,14 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                credentials: 'include',
+                //body: JSON.stringify(data),
             })
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error('Error:', error);
             });
     </script>

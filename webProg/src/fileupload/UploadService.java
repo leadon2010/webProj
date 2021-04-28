@@ -35,6 +35,7 @@ public class UploadService extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String fileName = request.getParameter("file");
 		System.out.println(fileName);
 		int maxSize = 30 * 1024 * 1024;
@@ -45,8 +46,7 @@ public class UploadService extends HttpServlet {
 
 		boolean isMulti = ServletFileUpload.isMultipartContent(request);// boolean타입. ??????
 		if (isMulti) {
-			MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding,
-					new DefaultFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 			FileDAO dao = new FileDAO();
 			String author = multi.getParameter("author");
 			String title = multi.getParameter("title");
@@ -59,7 +59,7 @@ public class UploadService extends HttpServlet {
 					moveUrl = "SelectService";
 				} else {
 					System.out.println("저장실패");
-					moveUrl = "upload.html";
+					moveUrl = "fileupload/upload.html";
 				}
 				response.sendRedirect(moveUrl);
 			} catch (Exception e) {
