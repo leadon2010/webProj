@@ -6,7 +6,7 @@
  *       the last modified time of the source file after
  *       generation to assist with modification tracking.
  */
-package org.apache.jsp;
+package com.edu.beans;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
