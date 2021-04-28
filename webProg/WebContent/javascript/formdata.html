@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <form action="formdata.jsp" id='frm'>
+        id: <input type="text" name='id' value='user1'>
+        name: <input type="text" name="name" value='hong'>
+        age: <input type="text" name="age" value=20>
+        <input type="submit" value="send">
+    </form>
+    <script>
+        $('#frm').submit(function (e) {
+            e.preventDefault();
+            let frm = document.getElementById('frm');
+            let fdata = new FormData(frm);
+            $.ajax({
+                url: $('#frm').attr('action'),
+                data: fdata,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+
+        })
+    </script>
+</body>
+
+</html>
