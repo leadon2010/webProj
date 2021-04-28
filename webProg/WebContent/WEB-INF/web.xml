@@ -14,22 +14,6 @@
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>uploadPageServlet</servlet-name>
-		<servlet-class>fileupload.UploadPageServlet</servlet-class>
-		<multipart-config>
-			<location>C:\tmp</location>
-			<max-file-size>-1</max-file-size>
-			<max-request-size>-1</max-request-size>
-			<file-size-threshold>1024</file-size-threshold>
-		</multipart-config>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>uploadPageServlet</servlet-name>
-		<url-pattern>/uploadPageServlet</url-pattern>
-	</servlet-mapping>
-
 	<resource-ref>
 		<description>Oracle DataSource example</description>
 		<res-ref-name>jdbc/oracle_javacafe</res-ref-name>

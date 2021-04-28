@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-//@MultipartConfig(location = "c:/tmp", maxFileSize = -1, maxRequestSize = -1, fileSizeThreshold = 1024)
+@MultipartConfig(location = "c:/tmp", maxFileSize = -1, maxRequestSize = -1, fileSizeThreshold = 1024)
 @WebServlet("/uploadPageServlet")
 public class UploadPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,8 +38,8 @@ public class UploadPageServlet extends HttpServlet {
 			Collection<Part> parts = request.getParts();
 
 			for (Part part : parts) {
-				System.out.printf("파라미터 명 : %s, contentType :  %s,  size : %d bytes \n", part.getName(),
-						part.getContentType(), part.getSize());
+				System.out.printf("파라미터 명 : %s, contentType :  %s,  size : %d bytes \n", //
+						part.getName(), part.getContentType(), part.getSize());
 
 				if (part.getHeader("Content-Disposition").contains("filename=")) {
 					String fileName = extractFileName(part.getHeader("Content-Disposition"));

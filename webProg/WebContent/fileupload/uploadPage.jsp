@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-      <form action="<%= application.getContextPath() %>/fileUpload"  method="post" enctype="multipart/form-data">
+      <form action="<%= application.getContextPath() %>/uploadPageServlet"  method="post" enctype="multipart/form-data">
             파일 설명 : <input type="text" name="description"><br>
             파일1 : <input type="file" name="file1"><br>
             파일2 : <input type="file" name="file2"><br>
