@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<%
 	ArrayList<FileVO> list = (ArrayList<FileVO>) request.getAttribute("list");
 	for (FileVO vo : list) {
