@@ -1,3 +1,5 @@
+<%@page import="fileupload.FileVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -8,6 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+	ArrayList<FileVO> list = (ArrayList<FileVO>) request.getAttribute("list");
+	for (FileVO vo : list) {
+		out.print(vo.getAuthor() + " " + vo.getTitle());
+	}
+	%>
 	<h2>author list</h2>
 	<a href="./fileupload/upload.html">Upload.html</a>
 	<table border='1'>

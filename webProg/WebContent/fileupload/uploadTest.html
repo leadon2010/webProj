@@ -10,7 +10,7 @@
 <body>
 	<form id='frm' action="../uploadServlet" method="post" enctype="multipart/form-data">
 		이름: <input type="text" name="name" value="홍길동" /><br>
-		파일1: <input type="file" name="file1" multiple/><br>
+		파일1: <input type="file" name="file1" multiple /><br>
 		파일2: <input type="file" name="file2" /><br>
 		파일3: <input type="file" name="file3" /><br>
 		<input type="submit" />
@@ -19,6 +19,7 @@
 		$('#frm').on('submit', function (e) {
 			e.preventDefault();
 			let frm = document.getElementById('frm');
+			// let frm = $('#frm'); jQuery 요소는 FormData에 사용이 안된다.(X)
 			let data = new FormData(frm);
 			$.ajax({
 				contentType: false,
