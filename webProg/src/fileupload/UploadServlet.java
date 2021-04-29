@@ -37,7 +37,7 @@ public class UploadServlet extends HttpServlet {
 		while (en.hasMoreElements()) {
 			String key = en.nextElement();
 			String val = request.getHeader(key);
-			out.println(key + " : " + val + "<br>");
+			System.out.println(key + " : " + val);
 		}
 
 		String saveDir = "c:/tmp";
@@ -45,7 +45,8 @@ public class UploadServlet extends HttpServlet {
 
 		MultipartRequest multi = new MultipartRequest(request, saveDir, size, "UTF-8", new DefaultFileRenamePolicy());
 
-		out.println(new String(multi.getParameter("name").getBytes("UTF-8"), "UTF-8") + "<br>");
+		// System.out.println(new String(multi.getParameter("name").getBytes("UTF-8"), "UTF-8") + "<br>");
+		System.out.println(multi.getParameter("name"));
 
 		for (Enumeration em = multi.getFileNames(); em.hasMoreElements();) {
 			String strName = (String) em.nextElement();

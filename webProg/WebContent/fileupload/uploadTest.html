@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+
 <body>
-<form action="../uploadServlet" method="post" enctype="multipart/form-data">
-	이름: <input type="text" name="name" value="홍길동"/>
-	파일: <input type="file" name="file1"/>
-	파일: <input type="file" name="file2"/>
-	<input type="submit" />
-</form>
+	<form id='frm' action="../uploadServlet" method="post" enctype="multipart/form-data">
+		이름: <input type="text" name="name" value="홍길동" /><br>
+		파일1: <input type="file" name="file1" multiple/><br>
+		파일2: <input type="file" name="file2" /><br>
+		파일3: <input type="file" name="file3" /><br>
+		<input type="submit" />
+	</form>
+	<script>
+		$('#frm').on('submit', function (e) {
+			e.preventDefault();
+			let frm = document.getElementById('frm');
+			let data = new FormData(frm);
+			$.ajax({
+				contentType: false,
+				processData: false,
+				url: $('#frm').attr('action'),
+				data: data,
+				type: 'post',
+				success: function () {
+					console.log('eee');
+				},
+				error: function () {
+					console.log('fff');
+				}
+			});
+		})
+	</script>
 </body>
+
 </html>
