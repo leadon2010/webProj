@@ -6,20 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import common.DAO;
 import common.DbCon;
 
-public class FileDAO {
-	// DB연결
-	public void getConnection() {
-	}
-
-	// DB연결 종료
-	public void close() {
-	}
+public class FileDAO extends DAO {
 
 	// 파일업로드
 	public int uploadFile(String author, String title, String file) {
-		Connection conn = DbCon.connect();
+//		Connection conn = DbCon.connect();
+		connect();
 		int r = 0;
 		String sql = "insert into fileboard values((select nvl(max(num)+1,1) from fileboard), ?, ?, ?, to_char(sysdate,'YYYY-MM-DD'))";
 		try {
@@ -32,11 +27,7 @@ public class FileDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			disconnect();
 		}
 
 		return r;
@@ -59,11 +50,7 @@ public class FileDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			disconnect();
 		}
 		return list;
 	}

@@ -2,6 +2,10 @@ package file;
 
 import java.io.File;
 
+/*
+ * String path 의 하위에 있는 폴더와 파일 리스트를 보여주는 프로그램.
+ * last updated 2021.4.29 by lch.
+ */
 public class FileExample {
 
 	public static File[] sortFileArray(File[] fileArray) {
@@ -27,7 +31,8 @@ public class FileExample {
 		String osName = System.getProperty("user.name");
 		System.out.println(osName);
 
-		String path = "/home/" + osName + "/git/javaScript/javaScript/WebContent";
+//		String path = "/home/" + osName + "/git/javaScript/javaScript/WebContent";
+		String path = "d:/git/leadon2010/webProj/webProg/WebContent";
 		File temp = new File(path);
 		File[] fileList = temp.listFiles();
 

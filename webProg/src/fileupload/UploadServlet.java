@@ -41,7 +41,7 @@ public class UploadServlet extends HttpServlet {
 		}
 
 		String saveDir = "c:/tmp";
-		int size = 5 * 1024 * 1024;
+		int size = 9 * 1024 * 1024;
 
 		MultipartRequest multi = new MultipartRequest(request, saveDir, size, "UTF-8", new DefaultFileRenamePolicy());
 
