@@ -7,11 +7,15 @@
   <script src='../lib/main.js'></script>
   <script src="data.js"></script>
   <script>
-    var calendar;
     document.addEventListener('DOMContentLoaded', function () {
+
+      let modalFrm = document.getElementById('showModal');
+      modalFrm.style.display = 'none';
+
+      // calendar 생성.
       var calendarEl = document.getElementById('calendar');
 
-      calendar = new FullCalendar.Calendar(calendarEl, {
+      var calendar = new FullCalendar.Calendar(calendarEl, {
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
@@ -21,7 +25,30 @@
         navLinks: true, // can click day/week names to navigate views
         selectable: true,
         selectMirror: true,
-        select: selectCallFnc,
+        select: function (arg) {
+          // var title = prompt('Event Title:');
+          // if (title) {
+          //   this.addEvent({
+          //     title: title,
+          //     start: arg.start,
+          //     end: arg.end,
+          //     allDay: arg.allDay
+          //   })
+          // }
+          // this.unselect();
+          let modalFrm = document.getElementById('showModal');
+          modalFrm.style.display = 'block';
+          let btn = document.getElementById('btn');
+          btn.onclick = function () {
+            calendar.addEvent({
+              title: document.getElementById('title').value,
+              start: arg.start,
+              end: arg.end,
+              allDay: arg.allDay
+            })
+            calendar.unselect();
+          }
+        }, // 이벤트 등록...
         eventClick: function (arg) {
           if (confirm('Are you sure you want to delete this event?')) {
             arg.event.remove()
@@ -32,16 +59,11 @@
         events: data
       });
 
+      // calendar 호출.
       calendar.render();
     });
 
     function selectCallFnc(arg) {
-      let newWin = window.open("about:blank", "hello", "width=200,height=200");
-
-      newWin.document.write("<input type='text' id='key'><input type='text' id='val'> <button id='btn'>Click</button>");
-      newWin.document.write(`<script> let key=document.getElementById('key').value; let val=document.getElementById('val').value;
-        document.getElementById('btn').onclick = function() { console.log(window.opener); console.log(window.opener.calendar);}
-        <\/script>`);
 
       // var title = prompt('Event Title:');
       // if (title) {
@@ -52,7 +74,9 @@
       //     allDay: arg.allDay
       //   })
       // }
-      // this.unselect()
+      // this.unselect();
+      let modalFrm = document.getElementById('showModal');
+      modalFrm.style.display = 'block';
     }
   </script>
   <style>
@@ -73,6 +97,11 @@
 <body>
 
   <div id='calendar'></div>
+  <div id='showModal'>
+    <input type="text" name="title" id="title">
+    <input type="text" name="day" id="day">
+    <button id='btn'>OK</button>
+  </div>
 
 </body>
 
