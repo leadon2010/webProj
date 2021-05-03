@@ -46,6 +46,18 @@
     <div id="show"></div>
 
     <script>
+        $.ajax({
+            url: '',
+            dataType: 'json',
+            success: function (resolve) {
+                console.log(resolve);
+            },
+            error: function (reject) {
+
+            }
+        });
+        $('#show').append();
+
         $('#fileName').change(function (e) {
             // 화면에 이미지 파일을 보여주도록 하기.
             for (file of this.files) {
@@ -67,7 +79,7 @@
                 url: $('#frm').attr('action'),
                 data: data,
                 type: 'post',
-                //dataType: 'json',
+                dataType: 'json',
                 success: function (resolve) {
                     console.log(resolve);
                 },
