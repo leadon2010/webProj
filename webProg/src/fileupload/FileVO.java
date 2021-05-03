@@ -7,6 +7,10 @@ public class FileVO {
 	private String file;
 	private String day;
 
+	public FileVO() {
+
+	}
+
 	public FileVO(int num, String author, String title, String file, String day) {
 		this.num = num;
 		this.author = author;

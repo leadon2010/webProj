@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -45,7 +47,8 @@ public class UploadServlet extends HttpServlet {
 
 		MultipartRequest multi = new MultipartRequest(request, saveDir, size, "UTF-8", new DefaultFileRenamePolicy());
 
-		// System.out.println(new String(multi.getParameter("name").getBytes("UTF-8"), "UTF-8") + "<br>");
+		// System.out.println(new String(multi.getParameter("name").getBytes("UTF-8"),
+		// "UTF-8") + "<br>");
 		System.out.println(multi.getParameter("name"));
 
 		for (Enumeration em = multi.getFileNames(); em.hasMoreElements();) {

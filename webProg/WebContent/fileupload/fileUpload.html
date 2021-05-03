@@ -4,29 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-
+    <style>
+        .list {
+            margin-top: 10px;
+        }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <form action="" id='frm'>
+        <form action="../fileUploadServlet" id='frm' method='post' enctype='multipart/form-data'>
             <table border="1">
                 <tr>
                     <td><label for="num">번호:</label></td>
-                    <td><input type="number" name="num" id="num"></td>
-                    <td rowspan="4"><img src="../images/SSO_0331.JP" alt="" id='img' height='220px' width="180px"></td>
+                    <td><input type="number" name="num" id="num" value='1'></td>
+                    <td rowspan="4"><img src="../images/SSO_0331.JPG" alt="" id='img' height='220px' width="180px"></td>
                 </tr>
                 <tr>
                     <td><label for="author">저자:</label></td>
-                    <td><input type="text" name="author" id="autor"></td>
+                    <td><input type="text" name="author" id="autor" value='홍길동'></td>
                 </tr>
                 <tr>
                     <td><label for="title">제목:</label></td>
-                    <td><input type="text" name="title" id="title"></td>
+                    <td><input type="text" name="title" id="title" value='호부호형'></td>
                 </tr>
                 <tr>
-                    <td><label for="fileName">파일</label></td>
+                    <td><label for="fileName">파일1</label></td>
                     <td><input type="file" name="fileName" id="fileName"></td>
                 </tr>
                 <tr>
@@ -43,7 +47,7 @@
 
     <script>
         $('#fileName').change(function (e) {
-            console.log(this.files);
+            // 화면에 이미지 파일을 보여주도록 하기.
             for (file of this.files) {
                 console.log(file);
                 $('#img').attr('src', URL.createObjectURL(file)).css({
@@ -51,6 +55,26 @@
                     'height': '220px'
                 });
             }
+        })
+
+        $('#frm').submit(function (e) {
+            e.preventDefault();
+            let data = new FormData(this); //document.getElementById('frm');
+
+            $.ajax({
+                contentType: false,
+                processData: false,
+                url: $('#frm').attr('action'),
+                data: data,
+                type: 'post',
+                //dataType: 'json',
+                success: function (resolve) {
+                    console.log(resolve);
+                },
+                error: function (reject) {
+                    console.log(reject);
+                }
+            })
         })
     </script>
 </body>

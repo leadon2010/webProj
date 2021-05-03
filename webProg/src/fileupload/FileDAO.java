@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import common.DAO;
@@ -31,6 +32,50 @@ public class FileDAO extends DAO {
 		}
 
 		return r;
+	}
+
+	public FileVO getInsertKeyVal(String author, String title, String fileName) {
+		connect();
+		String selectKey = "select nvl(max(num)+1,1) from fileboard";
+		String insertSql = "insert into fileboard values(?, ?, ?, ?, to_char(sysdate,'YYYY-MM-DD'))";
+		String selectSql = "select * from fileboard where num = ?";
+		int key = 0;
+		FileVO vo = new FileVO();
+		try {
+			Statement stmt = conn.createStatement();
+			rs = stmt.executeQuery(selectKey);
+			if (rs.next()) {
+				key = rs.getInt(1);
+			}
+			pstmt = conn.prepareStatement(insertSql);
+			pstmt.setInt(1, key);
+			pstmt.setString(2, author);
+			pstmt.setString(3, title);
+			pstmt.setString(4, fileName);
+
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 입력. \n" + "key: " + key);
+
+			pstmt = conn.prepareStatement(selectSql);
+			pstmt.setInt(1, key);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo.setNum(rs.getInt("num"));
+				vo.setAuthor(rs.getString("author"));
+				vo.setTitle(rs.getString("title"));
+				vo.setDay(rs.getString("day"));
+				vo.setFile(rs.getString("filename"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			disconnect();
+
+		}
+
+		return vo;
 	}
 
 	public ArrayList<FileVO> selectAll() {
