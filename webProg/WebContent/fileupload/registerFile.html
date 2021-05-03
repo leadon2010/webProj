@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form action="" id='frm'>
+            <table border="1">
+                <tr>
+                    <td><label for="num">번호:</label></td>
+                    <td><input type="number" name="num" id="num"></td>
+                    <td rowspan="4"><img src="../images/SSO_0331.JP" alt="" id='img' height='220px' width="180px"></td>
+                </tr>
+                <tr>
+                    <td><label for="author">저자:</label></td>
+                    <td><input type="text" name="author" id="autor"></td>
+                </tr>
+                <tr>
+                    <td><label for="title">제목:</label></td>
+                    <td><input type="text" name="title" id="title"></td>
+                </tr>
+                <tr>
+                    <td><label for="fileName">파일</label></td>
+                    <td><input type="file" name="fileName" id="fileName"></td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="3">
+                        <input type="submit" value="전송">
+                        <input type="reset" value="취소">
+                    </td>
+            </table>
+        </form>
+    </div>
+
+    <div class='list'>&lt;리스트&gt;</div>
+    <div id="show"></div>
+
+    <script>
+        $('#fileName').change(function (e) {
+            console.log(this.files);
+            for (file of this.files) {
+                console.log(file);
+                $('#img').attr('src', URL.createObjectURL(file)).css({
+                    'width': '180px',
+                    'height': '220px'
+                });
+            }
+        })
+    </script>
+</body>
+
+</html>
