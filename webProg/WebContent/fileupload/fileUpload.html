@@ -47,16 +47,53 @@
 
     <script>
         $.ajax({
-            url: '',
+            url: '../fileListServlet',
             dataType: 'json',
             success: function (resolve) {
                 console.log(resolve);
+                let $table = $('<table />').attr('border', '1');
+                for (let i = 0; i < resolve.length; i++) {
+                    let $a = $('<a />').html(resolve[i].author).attr('href', '#');
+                    $a.click(linkClick);
+                    let $tr = $('<tr />').append(
+                        $('<td />').html(resolve[i].num),
+                        $('<td />').html($a),
+                        $('<td />').html(resolve[i].title),
+                        $('<td />').html(resolve[i].fileName),
+                        $('<td />').html(resolve[i].day)
+                    );
+                    $tr.click(trClick);
+                    $table.append($tr);
+                }
+                $('#show').append($table);
             },
             error: function (reject) {
-
+                console.log(reject);
             }
         });
-        $('#show').append();
+
+        function trClick(e) {
+            console.log('trClick');
+        }
+
+        function linkClick(e) {
+            console.log('aClick');
+            // e.preventDefault();
+            e.stopPropagation();
+
+            console.log(e.currentTarget.parentNode.parentNode.firstChild.innerHTML);
+
+            $.ajax({
+                url: '../fileSearchServlet',
+                data: 'num=' + e.currentTarget.parentNode.parentNode.firstChild.innerHTML,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        }
 
         $('#fileName').change(function (e) {
             // 화면에 이미지 파일을 보여주도록 하기.
@@ -72,7 +109,9 @@
         $('#frm').submit(function (e) {
             e.preventDefault();
             let data = new FormData(this); //document.getElementById('frm');
-
+            for (var p of data.entries()) {
+                console.log(p);
+            }
             $.ajax({
                 contentType: false,
                 processData: false,

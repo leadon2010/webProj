@@ -79,7 +79,7 @@ public class FileDAO extends DAO {
 	}
 
 	public ArrayList<FileVO> selectAll() {
-		Connection conn = DbCon.connect();
+		connect();
 		ArrayList<FileVO> list = new ArrayList<>();
 		FileVO vo;
 		String sql = "select num, author, title, filename, day from fileboard order by num";
@@ -98,6 +98,31 @@ public class FileDAO extends DAO {
 			disconnect();
 		}
 		return list;
+	}
+
+	public FileVO getSearch(int num) {
+		connect();
+		String sql = "select * from fileboard where num = ?";
+		FileVO vo = new FileVO();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo.setAuthor(rs.getString("author"));
+				vo.setDay(rs.getString("day"));
+				vo.setFile(rs.getString("fileName"));
+				vo.setNum(rs.getInt("num"));
+				vo.setTitle(rs.getString("title"));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return vo;
 	}
 
 }

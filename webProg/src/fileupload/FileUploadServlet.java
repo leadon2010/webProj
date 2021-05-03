@@ -62,19 +62,22 @@ public class FileUploadServlet extends HttpServlet {
 				String name = (String) enu.nextElement();
 				String fileName = multi.getFilesystemName(name);
 				System.out.println("name: " + name + ", fileName: " + fileName);
+				fileN = fileName;
 
-				FileDAO dao = new FileDAO();
-				FileVO vo = dao.getInsertKeyVal(author, title, fileName);
-				JSONObject obj = new JSONObject();
-				obj.put("num", vo.getNum());
-				obj.put("author", vo.getAuthor());
-				obj.put("title", vo.getTitle());
-				obj.put("day", vo.getDay());
-				obj.put("fileName", vo.getFile());
-
-//				out.println(new String(fileName.getBytes("UTF-8"), "UTF-8") + "<br>");
-				out.println(obj);
 			}
+
+			FileDAO dao = new FileDAO();
+			FileVO vo = dao.getInsertKeyVal(author, title, fileN);
+
+			JSONObject obj = new JSONObject();
+			obj.put("num", vo.getNum());
+			obj.put("author", vo.getAuthor());
+			obj.put("title", vo.getTitle());
+			obj.put("day", vo.getDay());
+			obj.put("fileName", vo.getFile());
+
+//			out.println(new String(fileName.getBytes("UTF-8"), "UTF-8") + "<br>");
+			out.println(obj);
 		}
 	}
 
