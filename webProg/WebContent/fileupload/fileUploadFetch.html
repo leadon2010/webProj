@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        .list {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 전체 목록 가져오기..
+            // $.ajax({
+            //     url: '../fileListServlet',
+            //     dataType: 'json',
+            //     success: showListCallFnc,
+            //     error: function (reject) {
+            //         console.log(reject);
+            //     }
+            // });
+
+            fetch('../fileListServlet')
+                .then(response => response.json())
+                .then(result => console.log(result))
+                .catch(reject => console.error(reject));
+
+            // function showListCallFnc(resolve) {
+            //     let $table = $('<table />').attr('border', '1');
+            //     for (let i = 0; i < resolve.length; i++) {
+            //         let $a = $('<a />').html(resolve[i].author).attr('href', '#');
+            //         $a.click(linkClick);
+            //         let $tr = $('<tr />').append(
+            //             $('<td />').html(resolve[i].num),
+            //             $('<td />').html($a),
+            //             $('<td />').html(resolve[i].title),
+            //             $('<td />').html(resolve[i].fileName),
+            //             $('<td />').html(resolve[i].day)
+            //         );
+            //         $tr.click(trClick);
+            //         $table.append($tr);
+            //     }
+            //     $('#show').append($table);
+            // }
+
+            // 클릭이벤트..
+            // function trClick(e) {
+            //     console.log('trClick');
+            // }
+
+            // 링크이벤트..
+            // function linkClick(e) {
+            //     console.log('aClick');
+            //     // e.preventDefault();
+            //     e.stopPropagation();
+
+            //     console.log(e.currentTarget.parentNode.parentNode.firstChild.innerHTML);
+
+            //     $.ajax({
+            //         url: '../fileSearchServlet',
+            //         data: 'num=' + e.currentTarget.parentNode.parentNode.firstChild.innerHTML,
+            //         dataType: 'json',
+            //         success: function (data) {
+            //             console.log(data);
+            //             $('#num').val(data.num);
+            //             $('#author').val(data.author);
+            //             $('#title').val(data.title);
+            //             $('#img').attr('src', '../Upload/' + data.fileName)
+            //         },
+            //         error: function (err) {
+            //             console.log(err);
+            //         }
+            //     });
+            // }
+
+            // 파일선택 시 화면에 보여주기..
+            // $('#fileName').change(function (e) {
+            //     // 화면에 이미지 파일을 보여주도록 하기.
+            //     for (file of this.files) {
+            //         console.log(file);
+            //         $('#img').attr('src', URL.createObjectURL(file)).css({
+            //             'width': '180px',
+            //             'height': '220px'
+            //         });
+            //     }
+            // })
+
+            // 전송버튼 클릭..
+            // $('#frm').submit(function (e) {
+            //     e.preventDefault();
+            //     let data = new FormData(this); //document.getElementById('frm');
+            //     for (var p of data.entries()) {
+            //         console.log(p);
+            //     }
+            //     $.ajax({
+            //         contentType: false,
+            //         processData: false,
+            //         url: $('#frm').attr('action'),
+            //         data: data,
+            //         type: 'post',
+            //         dataType: 'json',
+            //         success: function (resolve) {
+            //             console.log(resolve);
+            //         },
+            //         error: function (reject) {
+            //             console.log(reject);
+            //         }
+            //     })
+            // })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <form action="../fileUploadServlet" id='frm' method='post' enctype='multipart/form-data'>
+            <table border="1">
+                <tr>
+                    <td><label for="num">번호:</label></td>
+                    <td><input type="number" name="num" id="num" value='1'></td>
+                    <td rowspan="4"><img src="../images/SSO_0331.JPG" alt="" id='img' height='220px' width="180px"></td>
+                </tr>
+                <tr>
+                    <td><label for="author">저자:</label></td>
+                    <td><input type="text" name="author" id="author" value='홍길동'></td>
+                </tr>
+                <tr>
+                    <td><label for="title">제목:</label></td>
+                    <td><input type="text" name="title" id="title" value='호부호형'></td>
+                </tr>
+                <tr>
+                    <td><label for="fileName">파일1</label></td>
+                    <td><input type="file" name="fileName" id="fileName"></td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="3">
+                        <input type="submit" value="전송">
+                        <input type="reset" value="취소">
+                    </td>
+            </table>
+        </form>
+    </div>
+
+    <div class='list'>&lt;리스트&gt;</div>
+    <div id="show"></div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
