@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td><label for="author">저자:</label></td>
-                    <td><input type="text" name="author" id="autor" value='홍길동'></td>
+                    <td><input type="text" name="author" id="author" value='홍길동'></td>
                 </tr>
                 <tr>
                     <td><label for="title">제목:</label></td>
@@ -46,36 +46,40 @@
     <div id="show"></div>
 
     <script>
+        // 전체 목록 가져오기..
         $.ajax({
             url: '../fileListServlet',
             dataType: 'json',
-            success: function (resolve) {
-                console.log(resolve);
-                let $table = $('<table />').attr('border', '1');
-                for (let i = 0; i < resolve.length; i++) {
-                    let $a = $('<a />').html(resolve[i].author).attr('href', '#');
-                    $a.click(linkClick);
-                    let $tr = $('<tr />').append(
-                        $('<td />').html(resolve[i].num),
-                        $('<td />').html($a),
-                        $('<td />').html(resolve[i].title),
-                        $('<td />').html(resolve[i].fileName),
-                        $('<td />').html(resolve[i].day)
-                    );
-                    $tr.click(trClick);
-                    $table.append($tr);
-                }
-                $('#show').append($table);
-            },
+            success: showListCallFnc,
             error: function (reject) {
                 console.log(reject);
             }
         });
 
+        function showListCallFnc(resolve) {
+            let $table = $('<table />').attr('border', '1');
+            for (let i = 0; i < resolve.length; i++) {
+                let $a = $('<a />').html(resolve[i].author).attr('href', '#');
+                $a.click(linkClick);
+                let $tr = $('<tr />').append(
+                    $('<td />').html(resolve[i].num),
+                    $('<td />').html($a),
+                    $('<td />').html(resolve[i].title),
+                    $('<td />').html(resolve[i].fileName),
+                    $('<td />').html(resolve[i].day)
+                );
+                $tr.click(trClick);
+                $table.append($tr);
+            }
+            $('#show').append($table);
+        }
+
+        // 클릭이벤트..
         function trClick(e) {
             console.log('trClick');
         }
 
+        // 링크이벤트..
         function linkClick(e) {
             console.log('aClick');
             // e.preventDefault();
@@ -86,8 +90,13 @@
             $.ajax({
                 url: '../fileSearchServlet',
                 data: 'num=' + e.currentTarget.parentNode.parentNode.firstChild.innerHTML,
+                dataType: 'json',
                 success: function (data) {
                     console.log(data);
+                    $('#num').val(data.num);
+                    $('#author').val(data.author);
+                    $('#title').val(data.title);
+                    $('#img').attr('src', '../Upload/' + data.fileName)
                 },
                 error: function (err) {
                     console.log(err);
@@ -95,6 +104,7 @@
             });
         }
 
+        // 파일선택 시 화면에 보여주기..
         $('#fileName').change(function (e) {
             // 화면에 이미지 파일을 보여주도록 하기.
             for (file of this.files) {
@@ -106,6 +116,7 @@
             }
         })
 
+        // 전송버튼 클릭..
         $('#frm').submit(function (e) {
             e.preventDefault();
             let data = new FormData(this); //document.getElementById('frm');

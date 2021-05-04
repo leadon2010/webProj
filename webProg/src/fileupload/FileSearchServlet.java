@@ -20,6 +20,9 @@ public class FileSearchServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		String num = request.getParameter("num");
 
 		num = num == null ? "0" : num;

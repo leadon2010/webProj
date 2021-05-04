@@ -36,6 +36,8 @@ public class FileUploadServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
 		PrintWriter out = response.getWriter();
 
 		Enumeration<String> en = request.getHeaderNames();
