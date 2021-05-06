@@ -37,6 +37,7 @@
                     <td align="center" colspan="3">
                         <input type="submit" value="전송">
                         <input type="reset" value="취소">
+                        <input type='button' value='수정' id='modifyBtn'>
                     </td>
             </table>
         </form>
@@ -115,6 +116,25 @@
                 });
             }
         })
+
+        $('#modifyBtn').click(function (e) {
+            console.log(e.currentTarget);
+            let frm = document.getElementById('frm');
+            let data = new FormData(frm);
+            $.ajax({
+                contentType: false,
+                processData: false,
+                url: '../fileModifyServlet',
+                data: data,
+                type: 'post',
+                success: function (resolve) {
+                    window.alert('updated.')
+                },
+                error: function (reject) {
+                    console.log(reject);
+                }
+            });
+        });
 
         // 전송버튼 클릭..
         $('#frm').submit(function (e) {

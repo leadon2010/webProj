@@ -32,6 +32,26 @@ public class FileDAO extends DAO {
 		return r;
 	}
 
+	public void modifyFile(FileVO vo) {
+		connect();
+		String modifySql = "update fileboard set author=?, title=?, filename=? where num=?";
+		try {
+			pstmt = conn.prepareStatement(modifySql);
+			pstmt.setString(1, vo.getAuthor());
+			pstmt.setString(2, vo.getTitle());
+			pstmt.setString(3, vo.getFile());
+			pstmt.setInt(4, vo.getNum());
+
+			int r = pstmt.executeUpdate();
+			System.out.println(r + " updated.");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+
 	public FileVO getInsertKeyVal(String author, String title, String fileName) {
 		connect();
 		String selectKey = "select nvl(max(num)+1,1) from fileboard";
