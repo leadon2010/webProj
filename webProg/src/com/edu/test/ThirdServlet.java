@@ -16,7 +16,7 @@ public class ThirdServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		super.doGet(req, resp);
+
 		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
 		out.print("<!doctype html><html><head><meta charset=UTF-8><title>Third Servlet</title></head>");

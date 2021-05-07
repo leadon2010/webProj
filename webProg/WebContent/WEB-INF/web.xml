@@ -7,7 +7,7 @@
 	<display-name>webProg</display-name>
 	<servlet>
 		<servlet-name>first</servlet-name>
-		<servlet-class>jsp.FirstServlet</servlet-class>
+		<servlet-class>com.edu.test.FirstServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>first</servlet-name>
