@@ -1,4 +1,4 @@
-package jsp;
+package com.edu.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;

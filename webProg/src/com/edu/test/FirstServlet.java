@@ -1,4 +1,4 @@
-package jsp;
+package com.edu.test;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletRequest;
@@ -6,7 +6,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
-@WebServlet("/nice")
+@WebServlet("/first")
 public class FirstServlet extends HttpServlet {
 	private static final long serialVersionUID = -2893737361570313739L;
 
