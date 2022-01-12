@@ -7,10 +7,12 @@
 </head>
 
 <body>
-    <form action="hello" method="post">
-        <input type="submit" value="OK">
-        <input type="reset" value="Reset">
-    </form>
+    <script>
+        var xhtp = new XMLHttpRequest();
+        xhtp.open('post', 'MethodTestServlet');
+        xhtp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhtp.send();
+    </script>
 </body>
 
 </html>
